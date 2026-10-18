@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -18,13 +18,15 @@ namespace _i
 		public ListViewEx()
 		{
 			this.AllowReorder = true;
-			this.LineColor = Color.Red;
+			this.LineColor = Color.FromArgb(14, 165, 233);
 			this.AllowDrop = true;
 			base.View = View.Details;
 			base.AllowColumnReorder = true;
 			base.FullRowSelect = true;
 			base.GridLines = true;
 			base.HideSelection = false;
+			this.BackColor = Color.FromArgb(22, 30, 46);
+			this.ForeColor = Color.FromArgb(241, 245, 249);
 			base.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
 			ListViewEx.SendMessage(base.Handle, 295, this.MakeLong(1, 1), 0);
 			if (this.m_changeDelayTimer == null)

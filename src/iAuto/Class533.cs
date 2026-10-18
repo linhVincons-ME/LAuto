@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -53,8 +53,10 @@ internal class Class533 : TextBox
 	// Token: 0x06002A27 RID: 10791 RVA: 0x0012DFBC File Offset: 0x0012C1BC
 	private void method_2()
 	{
-		this.color_0 = Color.LightGray;
-		this.color_1 = Color.Gray;
+		this.BackColor = Color.FromArgb(15, 23, 42);
+		this.ForeColor = Color.FromArgb(241, 245, 249);
+		this.color_0 = Color.FromArgb(148, 163, 184);
+		this.color_1 = Color.FromArgb(226, 232, 240);
 		this.font_0 = this.Font;
 		this.solidBrush_0 = new SolidBrush(this.color_1);
 		this.panel_0 = null;
@@ -80,6 +82,7 @@ internal class Class533 : TextBox
 		if (this.panel_0 == null && this.TextLength <= 0)
 		{
 			this.panel_0 = new Panel();
+			this.panel_0.BackColor = this.BackColor;
 			this.panel_0.Paint += this.panel_0_Paint;
 			this.panel_0.Invalidate();
 			this.panel_0.Click += this.panel_0_Click;

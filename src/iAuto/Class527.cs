@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -2171,13 +2171,15 @@ internal class Class527
 		TimeSpan timeSpan = DateTime.Now - this.Class106_0.Process_0.StartTime;
 		this.Class106_0.ListViewItem_0.SubItems[14].Text = string.Format("{0:00}:{1:00}:{2:00}", Math.Floor(timeSpan.TotalHours), timeSpan.Minutes, timeSpan.Seconds);
 		this.Class106_0.ListViewItem_0.SubItems[7].Text = string.Format("{0:00}:{1:00}", Math.Floor(this.Class106_0.Class527_0.Int32_37 / 3600m), this.Class106_0.Class527_0.Int32_37 / 60 % 60);
-		this.Class106_0.ListViewItem_0.SubItems[0].BackColor = (this.Boolean_1 ? Color.Red : Color.White);
+		Color cellDefaultBg = Color.FromArgb(22, 30, 46);
+		Color cellDefaultFg = Color.FromArgb(241, 245, 249);
+		this.Class106_0.ListViewItem_0.SubItems[0].BackColor = (this.Boolean_1 ? Color.FromArgb(185, 28, 28) : cellDefaultBg);
 		this.Class106_0.ListViewItem_0.SubItems[1].Text = this.Int32_50.ToString();
 		this.Class106_0.ListViewItem_0.SubItems[5].Text = string.Format("{0}%", this.Int32_43);
 		this.Class106_0.ListViewItem_0.SubItems[6].Text = string.Format("{0}%", this.Int32_44);
 		this.Class106_0.ListViewItem_0.SubItems[8].Text = string.Format("{0:0.00}%", this.Class106_0.Class527_0.Single_2);
 		this.Class106_0.ListViewItem_0.SubItems[9].Text = string.Format("{0:0.00}M", this.Class106_0.Double_0 / 1000000.0);
-		this.Class106_0.ListViewItem_0.SubItems[9].BackColor = (this.Class106_0.Boolean_34 ? Color.LightBlue : Color.White);
+		this.Class106_0.ListViewItem_0.SubItems[9].BackColor = (this.Class106_0.Boolean_34 ? Color.FromArgb(30, 58, 138) : cellDefaultBg);
 		this.Class106_0.ListViewItem_0.SubItems[12].Text = this.Int32_18.ToString();
 		this.Class106_0.ListViewItem_0.SubItems[13].Text = (this.Int32_19 / 10000).ToString();
 		Class106 class106_ = this.Class106_0.Class106_3;
@@ -2193,7 +2195,7 @@ internal class Class527
 		IL_030A:
 		string text = string_;
 		this.Class106_0.ListViewItem_0.SubItems[11].Text = text;
-		this.Class106_0.ListViewItem_0.SubItems[0].ForeColor = (this.Boolean_21 ? Color.Blue : SystemColors.WindowText);
+		this.Class106_0.ListViewItem_0.SubItems[0].ForeColor = (this.Boolean_21 ? Color.FromArgb(56, 189, 248) : cellDefaultFg);
 		Color color;
 		if (!GUI.dictionary_0.TryGetValue(this.String_5, out color))
 		{
@@ -2205,12 +2207,12 @@ internal class Class527
 			GUI.dictionary_0.Add(this.String_5, color);
 		}
 		this.Class106_0.ListViewItem_0.SubItems[11].BackColor = color;
-		this.Class106_0.ListViewItem_0.SubItems[7].BackColor = ((this.Class106_0.Int32_54 > 1) ? Color.Orange : SystemColors.Window);
+		this.Class106_0.ListViewItem_0.SubItems[7].BackColor = ((this.Class106_0.Int32_54 > 1) ? Color.FromArgb(194, 65, 12) : cellDefaultBg);
 		this.Class106_0.ListViewItem_0.SubItems[10].Text = (this.Class106_0.Class527_0.bool_1 ? "TRANSING" : string.Format("{0} [{1} {2}]", this.Class106_0.Class527_0.String_12, this.Class106_0.Int32_16, this.Class106_0.Int32_17));
-		this.Class106_0.ListViewItem_0.SubItems[4].BackColor = ((this.Int32_42 > 30) ? Color.White : Color.Red);
+		this.Class106_0.ListViewItem_0.SubItems[4].BackColor = ((this.Int32_42 > 30) ? cellDefaultBg : Color.FromArgb(185, 28, 28));
 		this.Class106_0.ListViewItem_0.SubItems[4].Text = string.Format("{0}%", this.Int32_42);
 		this.Class106_0.ListViewItem_0.SubItems[3].Text = this.Class106_0.String_16;
-		this.Class106_0.ListViewItem_0.SubItems[3].ForeColor = ((this.Class106_0.Class0_0.Stopwatch_11.Elapsed.TotalSeconds <= 5.0) ? Color.Green : Color.Red);
+		this.Class106_0.ListViewItem_0.SubItems[3].ForeColor = ((this.Class106_0.Class0_0.Stopwatch_11.Elapsed.TotalSeconds <= 5.0) ? Color.FromArgb(74, 222, 128) : Color.FromArgb(248, 113, 113));
 	}
 
 	// Token: 0x060029E1 RID: 10721 RVA: 0x00129F48 File Offset: 0x00128148

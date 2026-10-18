@@ -17,6 +17,7 @@ internal class Control6 : TabControl
 		base.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.ResizeRedraw, true);
 		this.TabAlignment_0 = TabAlignment.Bottom;
 		this.Boolean_0 = true;
+		this.Padding = new Point(12, 5);
 		this.class392_0 = new Control6.Class392(this);
 	}
 
@@ -159,7 +160,7 @@ internal class Control6 : TabControl
 				}
 			}
 		}
-		rectangle.Inflate(2, 2);
+		rectangle.Inflate(1, 0);
 		if (selectedIndex != -1 && rectangle.IntersectsWith(rectangle_0))
 		{
 			this.DrawCyberTab(graphics_0, selectedIndex, rectangle, true, false);
@@ -179,13 +180,13 @@ internal class Control6 : TabControl
 		TabPage tabPage = base.TabPages[tabIndex];
 
 		Color bgColor = isSelected 
-			? Color.FromArgb(30, 41, 59) 
-			: (isHot ? Color.FromArgb(24, 34, 49) : Color.FromArgb(15, 23, 42));
+			? Color.FromArgb(20, 27, 41) 
+			: (isHot ? Color.FromArgb(39, 53, 76) : Color.FromArgb(30, 41, 59));
 		Color textColor = isSelected 
 			? Color.FromArgb(255, 255, 255) 
-			: (isHot ? Color.FromArgb(241, 245, 249) : Color.FromArgb(148, 163, 184));
-		Color accentCyan = Color.FromArgb(14, 165, 233);
-		Color borderColor = isSelected ? Color.FromArgb(56, 189, 248) : Color.FromArgb(42, 54, 79);
+			: (isHot ? Color.FromArgb(255, 255, 255) : Color.FromArgb(226, 232, 240));
+		Color accentCyan = Color.FromArgb(56, 189, 248);
+		Color borderColor = isSelected ? Color.FromArgb(14, 165, 233) : Color.FromArgb(51, 65, 85);
 
 		using (SolidBrush bBg = new SolidBrush(bgColor))
 		using (Pen pBorder = new Pen(borderColor))
@@ -209,12 +210,12 @@ internal class Control6 : TabControl
 			}
 		}
 
-		Rectangle textRect = rect;
+		Rectangle textRect = new Rectangle(rect.X + 4, rect.Y + (isSelected ? 2 : 1), Math.Max(0, rect.Width - 8), Math.Max(0, rect.Height - 3));
 		Image image = this.method_3(tabPage.ImageIndex, tabPage.ImageKey);
 		if (image != null)
 		{
 			int imgY = rect.Y + (rect.Height - image.Height) / 2;
-			g.DrawImage(image, rect.X + (isSelected ? 6 : 4), imgY, image.Width, image.Height);
+			g.DrawImage(image, rect.X + 6, imgY, image.Width, image.Height);
 			textRect.X += image.Width + 6;
 			textRect.Width -= (image.Width + 6);
 		}
@@ -391,6 +392,56 @@ internal class Control6 : TabControl
 		// Token: 0x0600200C RID: 8204 RVA: 0x000EAFEC File Offset: 0x000E91EC
 		protected override void WndProc(ref Message m)
 		{
+			if (m.Msg == 15)
+			{
+				base.WndProc(ref m);
+				try
+				{
+					Control6.Class394.RECT rect;
+					if (Control6.Class394.GetClientRect(this.Handle, out rect) && rect.Width > 0 && rect.Height > 0)
+					{
+						using (Graphics g = Graphics.FromHwnd(this.Handle))
+						{
+							int halfW = rect.Width / 2;
+							Rectangle leftBtn = new Rectangle(0, 0, halfW, rect.Height);
+							Rectangle rightBtn = new Rectangle(halfW, 0, rect.Width - halfW, rect.Height);
+
+							using (SolidBrush bBg = new SolidBrush(Color.FromArgb(30, 41, 59)))
+							using (Pen pBorder = new Pen(Color.FromArgb(51, 65, 85)))
+							using (SolidBrush bArrow = new SolidBrush(Color.FromArgb(56, 189, 248)))
+							{
+								g.FillRectangle(bBg, leftBtn);
+								g.DrawRectangle(pBorder, leftBtn.X, leftBtn.Y, Math.Max(0, leftBtn.Width - 1), Math.Max(0, leftBtn.Height - 1));
+								int lcx = leftBtn.X + leftBtn.Width / 2;
+								int lcy = leftBtn.Y + leftBtn.Height / 2;
+								Point[] leftArrow = new Point[]
+								{
+									new Point(lcx + 2, lcy - 4),
+									new Point(lcx + 2, lcy + 4),
+									new Point(lcx - 3, lcy)
+								};
+								g.FillPolygon(bArrow, leftArrow);
+
+								g.FillRectangle(bBg, rightBtn);
+								g.DrawRectangle(pBorder, rightBtn.X, rightBtn.Y, Math.Max(0, rightBtn.Width - 1), Math.Max(0, rightBtn.Height - 1));
+								int rcx = rightBtn.X + rightBtn.Width / 2;
+								int rcy = rightBtn.Y + rightBtn.Height / 2;
+								Point[] rightArrow = new Point[]
+								{
+									new Point(rcx - 2, rcy - 4),
+									new Point(rcx - 2, rcy + 4),
+									new Point(rcx + 3, rcy)
+								};
+								g.FillPolygon(bArrow, rightArrow);
+							}
+						}
+					}
+				}
+				catch
+				{
+				}
+				return;
+			}
 			if (m.Msg != 2)
 			{
 				if (m.Msg != 130)
@@ -713,9 +764,23 @@ internal class Control6 : TabControl
 			// Token: 0x04001448 RID: 5192
 			public int int_3;
 
-			// Token: 0x04001449 RID: 5193
 			public int int_4;
 		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct RECT
+		{
+			public int Left;
+			public int Top;
+			public int Right;
+			public int Bottom;
+			public int Width => Right - Left;
+			public int Height => Bottom - Top;
+		}
+
+		[DllImport("user32.dll")]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		public static extern bool GetClientRect(IntPtr hWnd, out RECT lpRect);
 	}
 
 	// Token: 0x0200025F RID: 607

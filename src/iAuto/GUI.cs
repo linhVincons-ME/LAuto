@@ -718,7 +718,11 @@ internal partial class GUI : Form
 		{
 			long num = GClass36.smethod_0();
 			long num2 = GClass36.smethod_1();
-			return (int)(num / num2 * 100m);
+			if (num <= 0 || num2 <= 0)
+			{
+				return 0;
+			}
+			return (int)((decimal)num / num2 * 100m);
 		}
 	}
 
@@ -4391,8 +4395,15 @@ internal partial class GUI : Form
 								ListViewItem listViewItem = new ListViewItem(new string[33])
 								{
 									UseItemStyleForSubItems = false,
-									Checked = true
+									Checked = true,
+									BackColor = Color.FromArgb(22, 30, 46),
+									ForeColor = Color.FromArgb(241, 245, 249)
 								};
+								for (int s = 0; s < listViewItem.SubItems.Count; s++)
+								{
+									listViewItem.SubItems[s].BackColor = Color.FromArgb(22, 30, 46);
+									listViewItem.SubItems[s].ForeColor = Color.FromArgb(241, 245, 249);
+								}
 								listViewItem.Text = "OFFLINE";
 								Class106 class6 = new Class106(process, class4, listViewItem);
 								class6.String_22 = text;
@@ -5038,7 +5049,7 @@ internal partial class GUI : Form
 			}
 			this.Text = string.Concat(new string[]
 			{
-				"iAuto ",
+				"LAuto v2 ",
 				Settings.Default.Version,
 				" - ",
 				(100 - this.Int32_0).ToString(),
@@ -6567,7 +6578,18 @@ internal partial class GUI : Form
 	[CompilerGenerated]
 	private void method_109()
 	{
-		this.method_8();
+		if (string.IsNullOrEmpty(this.String_2))
+		{
+			this.String_2 = Class106.Class210_0["Settings", "User"];
+			if (string.IsNullOrEmpty(this.String_2))
+			{
+				this.String_2 = "LAuto";
+			}
+		}
+		this.tabMain.Visible = true;
+		this.menuMain.Visible = true;
+		this.tabMain.SelectedIndex = 0;
+		this.method_111();
 	}
 
 	// Token: 0x06002228 RID: 8744 RVA: 0x000171F1 File Offset: 0x000153F1
@@ -12063,6 +12085,7 @@ internal partial class GUI : Form
 			// Style all tab pages in tabMain & tabBoottom
 			if (this.tabMain != null)
 			{
+				this.tabMain.Padding = new Point(12, 5);
 				foreach (TabPage page in this.tabMain.TabPages)
 				{
 					page.BackColor = Color.FromArgb(18, 24, 36);
@@ -12071,12 +12094,16 @@ internal partial class GUI : Form
 			}
 			if (this.tabBoottom != null)
 			{
+				this.tabBoottom.Padding = new Point(10, 4);
 				foreach (TabPage page in this.tabBoottom.TabPages)
 				{
 					page.BackColor = Color.FromArgb(18, 24, 36);
 					page.ForeColor = Color.FromArgb(241, 245, 249);
 				}
 			}
+
+			// Style all child controls across all panels, listviews, comboboxes, textboxes
+			this.StyleAllChildControls(this);
 
 			// Info tab (tabPay)
 			this.tabPay.Text = "Info";
@@ -12218,6 +12245,96 @@ internal partial class GUI : Form
 		}
 	}
 
+	private readonly List<Control> styledControls = new List<Control>();
+
+	private void StyleAllChildControls(Control root)
+	{
+		if (root == null) return;
+		foreach (Control c in root.Controls)
+		{
+			if (c is ListView lv)
+			{
+				lv.BackColor = Color.FromArgb(22, 30, 46);
+				lv.ForeColor = Color.FromArgb(241, 245, 249);
+				foreach (ListViewItem item in lv.Items)
+				{
+					item.BackColor = Color.FromArgb(22, 30, 46);
+					item.ForeColor = Color.FromArgb(241, 245, 249);
+					foreach (ListViewItem.ListViewSubItem sub in item.SubItems)
+					{
+						sub.BackColor = Color.FromArgb(22, 30, 46);
+						sub.ForeColor = Color.FromArgb(241, 245, 249);
+					}
+				}
+			}
+			else if (c is ComboBox cbo)
+			{
+				cbo.BackColor = Color.FromArgb(26, 34, 52);
+				cbo.ForeColor = Color.FromArgb(241, 245, 249);
+				cbo.FlatStyle = FlatStyle.Flat;
+				cbo.DrawMode = DrawMode.OwnerDrawFixed;
+				cbo.DrawItem -= this.Cbo_DrawItem;
+				cbo.DrawItem += this.Cbo_DrawItem;
+				if (!this.styledControls.Contains(cbo))
+				{
+					this.styledControls.Add(cbo);
+					new CyberComboBoxStyler(cbo);
+				}
+			}
+			else if (c is TextBox tb)
+			{
+				tb.BackColor = Color.FromArgb(15, 23, 42);
+				tb.ForeColor = Color.FromArgb(241, 245, 249);
+			}
+			else if (c is CheckBox cb)
+			{
+				cb.ForeColor = Color.FromArgb(241, 245, 249);
+			}
+			else if (c is RadioButton rb)
+			{
+				rb.ForeColor = Color.FromArgb(241, 245, 249);
+			}
+			else if (c is Label lbl)
+			{
+				if (lbl.ForeColor == Color.Black || lbl.ForeColor == SystemColors.ControlText)
+				{
+					lbl.ForeColor = Color.FromArgb(241, 245, 249);
+				}
+			}
+			else if (c is Panel p && !(p is TabPage))
+			{
+				p.BackColor = Color.FromArgb(18, 24, 36);
+			}
+
+			if (c.HasChildren)
+			{
+				this.StyleAllChildControls(c);
+			}
+		}
+	}
+
+	private void Cbo_DrawItem(object sender, DrawItemEventArgs e)
+	{
+		ComboBox cbo = sender as ComboBox;
+		if (cbo == null || e.Index < 0 || e.Index >= cbo.Items.Count) return;
+
+		bool isSelected = (e.State & DrawItemState.Selected) == DrawItemState.Selected;
+		Color bg = isSelected ? Color.FromArgb(14, 165, 233) : Color.FromArgb(26, 34, 52);
+		Color fg = isSelected ? Color.White : Color.FromArgb(241, 245, 249);
+
+		using (SolidBrush bBg = new SolidBrush(bg))
+		using (SolidBrush bFg = new SolidBrush(fg))
+		{
+			e.Graphics.FillRectangle(bBg, e.Bounds);
+			string text = cbo.GetItemText(cbo.Items[e.Index]);
+			using (StringFormat sf = new StringFormat { LineAlignment = StringAlignment.Center })
+			{
+				Rectangle textRect = new Rectangle(e.Bounds.X + 2, e.Bounds.Y, e.Bounds.Width - 4, e.Bounds.Height);
+				e.Graphics.DrawString(text, e.Font ?? cbo.Font, bFg, textRect, sf);
+			}
+		}
+	}
+
 	private void OnPaintCheatsheet(object sender, PaintEventArgs e)
 	{
 		try
@@ -12320,4 +12437,63 @@ internal class ModernDarkColorTable : ProfessionalColorTable
 	public override Color MenuItemPressedGradientEnd => Color.FromArgb(30, 41, 59);
 	public override Color SeparatorDark => Color.FromArgb(42, 54, 79);
 	public override Color SeparatorLight => Color.FromArgb(30, 41, 59);
+}
+
+internal class CyberComboBoxStyler : NativeWindow
+{
+	private readonly ComboBox _cbo;
+
+	public CyberComboBoxStyler(ComboBox cbo)
+	{
+		this._cbo = cbo;
+		if (cbo.IsHandleCreated)
+		{
+			this.AssignHandle(cbo.Handle);
+		}
+		cbo.HandleCreated += (s, e) => this.AssignHandle(cbo.Handle);
+		cbo.HandleDestroyed += (s, e) => this.ReleaseHandle();
+	}
+
+	protected override void WndProc(ref Message m)
+	{
+		base.WndProc(ref m);
+		if (m.Msg == 15 && this._cbo != null && this._cbo.IsHandleCreated)
+		{
+			try
+			{
+				using (Graphics g = Graphics.FromHwnd(this._cbo.Handle))
+				{
+					int arrowBtnWidth = 18;
+					Rectangle btnRect = new Rectangle(this._cbo.Width - arrowBtnWidth - 1, 1, arrowBtnWidth, this._cbo.Height - 2);
+					using (SolidBrush bBtn = new SolidBrush(Color.FromArgb(30, 41, 59)))
+					using (Pen pBorder = new Pen(Color.FromArgb(51, 65, 85)))
+					{
+						g.FillRectangle(bBtn, btnRect);
+						g.DrawLine(pBorder, btnRect.Left, btnRect.Top, btnRect.Left, btnRect.Bottom);
+					}
+
+					int cx = btnRect.Left + btnRect.Width / 2;
+					int cy = btnRect.Top + btnRect.Height / 2;
+					Point[] arrow = new Point[]
+					{
+						new Point(cx - 4, cy - 2),
+						new Point(cx + 4, cy - 2),
+						new Point(cx, cy + 3)
+					};
+					using (SolidBrush bArrow = new SolidBrush(Color.FromArgb(56, 189, 248)))
+					{
+						g.FillPolygon(bArrow, arrow);
+					}
+
+					using (Pen pOuter = new Pen(Color.FromArgb(51, 65, 85)))
+					{
+						g.DrawRectangle(pOuter, 0, 0, this._cbo.Width - 1, this._cbo.Height - 1);
+					}
+				}
+			}
+			catch
+			{
+			}
+		}
+	}
 }
