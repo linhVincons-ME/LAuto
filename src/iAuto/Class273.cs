@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -14,9 +14,37 @@ internal static class Class273
 	[STAThread]
 	private static void Main()
 	{
-		Application.EnableVisualStyles();
-		Application.SetCompatibleTextRenderingDefault(false);
-		Application.Run(new GUI());
+		Class273.Class274 @class = new Class273.Class274();
+		if (!Class273.smethod_0())
+		{
+			Class273.smethod_1();
+			Application.Exit();
+			return;
+		}
+		@class.stringBuilder_0 = new StringBuilder(100);
+		Process[] processesByName = Process.GetProcessesByName("iAuto");
+		for (int i = 0; i < processesByName.Length; i++)
+		{
+			Class273.Class275 class2 = new Class273.Class275();
+			class2.class274_0 = @class;
+			class2.process_0 = processesByName[i];
+			class2.intptr_0 = IntPtr.Zero;
+			Class273.EnumWindows(new Class273.Delegate0(class2.method_0), IntPtr.Zero);
+			if (class2.intptr_0 != IntPtr.Zero)
+			{
+				Class534.smethod_3(class2.intptr_0);
+			}
+		}
+		bool flag = true;
+		using (new Mutex(true, "iAuto", out flag))
+		{
+			if (flag)
+			{
+				Application.EnableVisualStyles();
+				Application.SetCompatibleTextRenderingDefault(false);
+				Application.Run(new GUI());
+			}
+		}
 	}
 
 	// Token: 0x0600171A RID: 5914

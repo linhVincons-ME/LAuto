@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -117,15 +117,7 @@ internal partial class GUI : Form
 		catch
 		{
 		}
-		string appPath = Path.GetDirectoryName(typeof(GUI).Assembly.Location);
-		if (!string.IsNullOrEmpty(appPath) && File.Exists(Path.Combine(appPath, "-iAuto.ini")))
-		{
-			Directory.SetCurrentDirectory(appPath);
-		}
-		else
-		{
-			Directory.SetCurrentDirectory(Path.GetDirectoryName(Application.ExecutablePath));
-		}
+		Directory.SetCurrentDirectory(Path.GetDirectoryName(Application.ExecutablePath));
 		Application.ThreadException += GUI.Class403.f_A642BF9F.method_0;
 		AppDomain.CurrentDomain.UnhandledException += GUI.Class403.f_A642BF9F.method_1;
 		this.InitializeComponent();
@@ -1283,179 +1275,19 @@ internal partial class GUI : Form
 	// Token: 0x060020D2 RID: 8402 RVA: 0x000F027C File Offset: 0x000EE47C
 	private void method_8()
 	{
-		this.tabMain.Visible = true;
-		this.menuMain.Visible = true;
-		this.tabMain.SelectedIndex = 0;
-		string text = Class106.Class210_0["Settings", "User"];
-		string text2 = Class106.Class210_0["Settings", "Pass"];
-		if (string.IsNullOrEmpty(text))
+		LoginiAuto loginiAuto = new LoginiAuto
 		{
-			text = "Sandy03z@gmail.com";
-		}
-		if (string.IsNullOrEmpty(text2))
-		{
-			text2 = "Asd@123456";
-		}
-		this.String_2 = text;
-		this.String_3 = text2;
-		GUI.double_0 = 9999999.0;
-		GUI.Int32_2 = 999999;
-		GUI.Boolean_0 = true;
-		GUI.Boolean_1 = true;
-		GUI.Boolean_2 = true;
-		GUI.Boolean_3 = true;
+			Dock = DockStyle.Fill
+		};
 		foreach (object obj in this.tabPay.Controls)
 		{
-			((Control)obj).Visible = true;
+			((Control)obj).Visible = false;
 		}
-		try
-		{
-			if (GUI.string_1 == null)
-			{
-				GUI.string_1 = GClass31.smethod_0();
-			}
-		}
-		catch
-		{
-		}
-		this.UpdateInfoTab();
-		this.method_36();
-		Class228.smethod_2();
-		TabChat tabChat = this.tabChat_0;
-		if (tabChat != null)
-		{
-			tabChat.method_5();
-		}
-	}
-
-	private void UpdateInfoTab()
-	{
-		try
-		{
-			this.tabPay.Text = "Info";
-			this.button1.Visible = false;
-
-			// GroupBox 8: Account Info
-			this.groupBox8.Text = "Tài Khoản & Trạng Thái";
-			this.txtUserChip.Text = this.String_2;
-			this.txtUserChip.ReadOnly = true;
-			this.txtSendChip.Text = "Bản Quyền: Trọn Đời (Lifetime)";
-			this.txtSendChip.ReadOnly = true;
-			this.btnSendChip.Text = "VIP";
-			this.btnSendChip.Enabled = true;
-
-			// GroupBox 1: Version Info
-			this.groupBox1.Text = "Phiên Bản Phần Mềm";
-			this.txtGiftCode.Text = "iAuto Pro (Clean & Offline)";
-			this.txtGiftCode.ReadOnly = true;
-			this.btnOpenGiftCode.Text = "v" + Settings.Default.Version;
-			this.btnOpenGiftCode.Enabled = true;
-
-			// GroupBox 2: Client Support
-			this.groupBox2.Text = "Máy Chủ Hỗ Trợ";
-			this.txtNewPass.Text = "VNG / Private / Origin";
-			this.txtNewPass.ReadOnly = true;
-			this.button3.Text = "Sẵn Sàng";
-			this.button3.Enabled = true;
-
-			// GroupBox 9: Engine Info
-			this.groupBox9.Text = "Cơ Chế Điều Khiển";
-			this.txtBetChip.Text = "WOW64 Native Hook & Lua";
-			this.txtBetChip.ReadOnly = true;
-			this.button14.Text = "x86/x64";
-			this.button14.Enabled = true;
-
-			// Status buttons
-			this.btnDayVNG.Text = "✔ Hạn Dùng VNG: Vĩnh Viễn";
-			this.btnDayPRI.Text = "✔ Hạn Dùng Private: Vĩnh Viễn";
-			this.btnDayORI.Text = "✔ Hạn Dùng Origin: Vĩnh Viễn";
-			this.btnBlance.Text = "Tính Năng: Không Giới Hạn";
-			this.lblIncome.Text = "Chế độ: Độc lập offline (Không phụ thuộc server)";
-			this.linkLabel1.Text = "⚡ Tối Ưu & Dọn Bộ Nhớ RAM (Trim RAM)";
-
-			// Right Panel (myPanel3)
-			this.txtHWID.Text = "HWID: " + (GUI.string_1 ?? "N/A");
-			this.txtiAutoUser.Text = "Người Dùng: " + this.String_2;
-			this.button5.Text = "📂 Mở Thư Mục Cài Đặt (Open Folder)";
-			this.button12.Text = "💾 Lưu Cấu Hình Ngay (-iAuto.ini)";
-			this.btnRefresh.Text = "🔄 Làm Mới Trạng Thái";
-
-			// Cheat Sheet in picQr
-			this.picQr.Image = null;
-			this.picQr.Paint -= this.OnPaintCheatsheet;
-			this.picQr.Paint += this.OnPaintCheatsheet;
-			this.picQr.Invalidate();
-		}
-		catch
-		{
-		}
-	}
-
-	private void OnPaintCheatsheet(object sender, PaintEventArgs e)
-	{
-		try
-		{
-			e.Graphics.Clear(Color.FromArgb(246, 248, 252));
-			using (Font titleFont = new Font("Segoe UI", 9.5f, FontStyle.Bold))
-			using (Font boldFont = new Font("Segoe UI", 8.25f, FontStyle.Bold))
-			using (Font font = new Font("Segoe UI", 8.25f, FontStyle.Regular))
-			using (Brush bTitle = new SolidBrush(Color.FromArgb(0, 70, 150)))
-			using (Brush bKey = new SolidBrush(Color.DarkRed))
-			using (Brush bText = new SolidBrush(Color.FromArgb(30, 30, 30)))
-			{
-				e.Graphics.DrawString("PHÍM TẮT ĐIỀU KHIỂN NHANH", titleFont, bTitle, 10f, 10f);
-
-				string[] keys = new string[]
-				{
-					"Ctrl + Q",
-					"Ctrl + K",
-					"Ctrl + U",
-					"Ctrl + D",
-					"Ctrl + Shift + O",
-					"Alt + F1",
-					"Alt + F2",
-					"Alt + F3",
-					"Space",
-					"Tab"
-				};
-				string[] descs = new string[]
-				{
-					"Đánh theo Key / Bám Key",
-					"Bật / Tắt dùng Skill",
-					"Lên thú cưỡi",
-					"Xuống thú cưỡi",
-					"Chế độ chỉ đánh quái",
-					"Triệu tập nhân vật",
-					"Triệu tập cả tổ đội",
-					"Buộc triệu tập khẩn",
-					"Tạm dừng / Tiếp tục Auto",
-					"Đổi mục tiêu gần nhất"
-				};
-
-				float y = 35f;
-				for (int i = 0; i < keys.Length; i++)
-				{
-					e.Graphics.DrawString(keys[i] + ":", boldFont, bKey, 10f, y);
-					e.Graphics.DrawString(descs[i], font, bText, 85f, y);
-					y += 18f;
-				}
-
-				y += 5f;
-				using (Pen p = new Pen(Color.LightGray))
-				{
-					e.Graphics.DrawLine(p, 10f, y, 210f, y);
-				}
-				y += 6f;
-				using (Font noteFont = new Font("Segoe UI", 7.5f, FontStyle.Italic))
-				using (Brush bNote = new SolidBrush(Color.DarkSlateGray))
-				{
-					e.Graphics.DrawString("Chạy game bằng Admin để kích hoạt\nđầy đủ tính năng tiêm DLL & phím tắt.", noteFont, bNote, 10f, y);
-				}
-			}
-		}
-		catch
-		{
-		}
+		base.Controls.Add(loginiAuto);
+		this.tabMain.Visible = false;
+		this.menuMain.Visible = false;
+		loginiAuto.BringToFront();
+		loginiAuto.Disposed += this.method_110;
 	}
 
 	// Token: 0x060020D3 RID: 8403 RVA: 0x000F0324 File Offset: 0x000EE524
@@ -1833,19 +1665,23 @@ internal partial class GUI : Form
 	// Token: 0x060020EA RID: 8426 RVA: 0x00015FC8 File Offset: 0x000141C8
 	private void btnOpenGiftCode_Click(object sender, EventArgs e)
 	{
-		MessBox.smethod_0("Phiên bản iAuto Pro đã được kích hoạt VIP Vĩnh Viễn!\nBạn không cần nạp GiftCode.");
+		Task.Run(new Action(this.method_112));
 	}
 
 	// Token: 0x060020EB RID: 8427 RVA: 0x00015FDC File Offset: 0x000141DC
 	private void btnRefresh_Click(object sender, EventArgs e)
 	{
-		this.UpdateInfoTab();
+		if (!this.btnRefresh.Enabled)
+		{
+			return;
+		}
+		Task.Run(new Action(this.method_113));
 	}
 
 	// Token: 0x060020EC RID: 8428 RVA: 0x00015FFE File Offset: 0x000141FE
 	private void btnSendChip_Click(object sender, EventArgs e)
 	{
-		MessBox.smethod_0("Tài khoản đang hoạt động ở chế độ VIP trọn đời.");
+		Task.Run(new Action(this.method_115));
 	}
 
 	// Token: 0x060020ED RID: 8429 RVA: 0x00016012 File Offset: 0x00014212
@@ -1949,7 +1785,7 @@ internal partial class GUI : Form
 	// Token: 0x060020F2 RID: 8434 RVA: 0x0001603F File Offset: 0x0001423F
 	private void button14_Click(object sender, EventArgs e)
 	{
-		MessBox.smethod_0("Cơ chế tiêm DLL (WOW64) và Lua Engine đang hoạt động bình thường.");
+		Task.Run(new Action(this.method_118));
 	}
 
 	// Token: 0x060020F3 RID: 8435 RVA: 0x000F0FC0 File Offset: 0x000EF1C0
@@ -5611,7 +5447,7 @@ internal partial class GUI : Form
 	// Token: 0x060021BC RID: 8636 RVA: 0x00016BFD File Offset: 0x00014DFD
 	private void button3_Click(object sender, EventArgs e)
 	{
-		MessBox.smethod_0("Auto đang chạy độc lập hoàn toàn, không cần đổi mật khẩu máy chủ.");
+		Task.Run(new Action(this.method_139));
 	}
 
 	// Token: 0x060021BD RID: 8637 RVA: 0x000F7DC0 File Offset: 0x000F5FC0
@@ -5673,17 +5509,11 @@ internal partial class GUI : Form
 		messBox.EventHandler_0 = (EventHandler)Delegate.Combine(messBox.EventHandler_0, new EventHandler(this.method_141));
 	}
 
+	// Token: 0x060021C0 RID: 8640 RVA: 0x00016C6B File Offset: 0x00014E6B
 	private void button12_Click(object sender, EventArgs e)
 	{
-		try
-		{
-			Class226.smethod_0();
-			MessBox.smethod_0("Đã lưu toàn bộ cấu hình vào -iAuto.ini thành công!");
-		}
-		catch (Exception ex)
-		{
-			MessBox.smethod_0(ex.Message);
-		}
+		MessBox messBox = MessBox.smethod_0("+20 Days\r\nPrice 99.000 Chip\r\nAre You Sure?");
+		messBox.EventHandler_0 = (EventHandler)Delegate.Combine(messBox.EventHandler_0, new EventHandler(this.method_142));
 	}
 
 	// Token: 0x060021C1 RID: 8641 RVA: 0x000F7F18 File Offset: 0x000F6118
@@ -6023,17 +5853,10 @@ internal partial class GUI : Form
 		}
 	}
 
+	// Token: 0x060021E8 RID: 8680 RVA: 0x00016EC3 File Offset: 0x000150C3
 	private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 	{
-		try
-		{
-			GC.Collect();
-			GC.WaitForPendingFinalizers();
-			MessBox.smethod_0("Đã dọn dẹp và tối ưu bộ nhớ RAM ứng dụng!");
-		}
-		catch
-		{
-		}
+		Process.Start("https://zalo.me/g/cfmgni055");
 	}
 
 	// Token: 0x060021E9 RID: 8681 RVA: 0x000F8628 File Offset: 0x000F6828
@@ -6271,16 +6094,11 @@ internal partial class GUI : Form
 		Class106.IEnumerable_3.smethod_22<Class106>(new Action<Class106>(GUI.Class403.f_A642BF9F.method_183));
 	}
 
+	// Token: 0x060021FD RID: 8701 RVA: 0x00017046 File Offset: 0x00015246
 	private void button5_Click(object sender, EventArgs e)
 	{
-		try
-		{
-			Process.Start("explorer.exe", Environment.CurrentDirectory);
-		}
-		catch (Exception ex)
-		{
-			MessBox.smethod_0("Không thể mở thư mục: " + ex.Message);
-		}
+		MessBox messBox = MessBox.smethod_0("+365 Days\r\nPrice 1.000.000 Chip\r\nAre You Sure?");
+		messBox.EventHandler_0 = (EventHandler)Delegate.Combine(messBox.EventHandler_0, new EventHandler(this.method_152));
 	}
 
 	// Token: 0x060021FE RID: 8702 RVA: 0x0000500B File Offset: 0x0000320B
@@ -6660,7 +6478,7 @@ internal partial class GUI : Form
 			GUI.int_0++;
 			if (GUI.int_0 >= 5)
 			{
-				GUI.double_0 = 9999999.0;
+				GUI.double_0 = 0.0;
 			}
 		}
 		finally
@@ -6673,6 +6491,21 @@ internal partial class GUI : Form
 	[CompilerGenerated]
 	private void method_106()
 	{
+		for (;;)
+		{
+			try
+			{
+				GUI.Class494 @class = new GUI.Class494();
+				@class.gui_0 = this;
+				@class.byte_0 = new WebClient().DownloadData("https://img.vietqr.io/image/ICB-107006953692-print.png?accountName=NGUYEN%20DUY%20HAI&addInfo=" + this.string_2);
+				base.Invoke(new Action(@class.method_0));
+				break;
+			}
+			catch
+			{
+			}
+			Thread.Sleep(1000);
+		}
 	}
 
 	// Token: 0x06002225 RID: 8741 RVA: 0x0010C3FC File Offset: 0x0010A5FC
@@ -6730,7 +6563,34 @@ internal partial class GUI : Form
 	[CompilerGenerated]
 	private void method_111()
 	{
-		this.method_8();
+		this.tabMain.Visible = true;
+		this.menuMain.Visible = true;
+		this.method_36();
+		this.txtiAutoUser.Text = this.String_2;
+		foreach (object obj in this.tabPay.Controls)
+		{
+			((Control)obj).Visible = true;
+		}
+		this.btnRefresh_Click(null, null);
+		if (this.String_2 != "0364338933" && this.String_2 != "0972107747" && this.String_2 != "0917770732" && this.String_2 != "tieudattai@yahoo.com")
+		{
+			foreach (object obj2 in this.lvFunction.Items)
+			{
+				ListViewItem listViewItem = (ListViewItem)obj2;
+				if (listViewItem.Tag == "muangoc")
+				{
+					listViewItem.Remove();
+				}
+			}
+		}
+		GUI.Boolean_3 = true;
+		Class228.smethod_2();
+		TabChat tabChat = this.tabChat_0;
+		if (tabChat == null)
+		{
+			return;
+		}
+		tabChat.method_5();
 	}
 
 	// Token: 0x0600222A RID: 8746 RVA: 0x0010C6AC File Offset: 0x0010A8AC
@@ -7554,13 +7414,11 @@ internal partial class GUI : Form
 		// Token: 0x0600225D RID: 8797 RVA: 0x0000500B File Offset: 0x0000320B
 		internal void method_0(object sender, ThreadExceptionEventArgs e)
 		{
-			try { File.AppendAllText("iauto_crash.log", "ThreadException: " + e.Exception + "\r\n"); } catch {}
 		}
 
 		// Token: 0x0600225E RID: 8798 RVA: 0x0000500B File Offset: 0x0000320B
 		internal void method_1(object sender, UnhandledExceptionEventArgs e)
 		{
-			try { File.AppendAllText("iauto_crash.log", "UnhandledException: " + e.ExceptionObject + "\r\n"); } catch {}
 		}
 
 		// Token: 0x0600225F RID: 8799 RVA: 0x000173BC File Offset: 0x000155BC

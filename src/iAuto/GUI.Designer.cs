@@ -1,4 +1,4 @@
-// Token: 0x02000268 RID: 616
+﻿// Token: 0x02000268 RID: 616
 internal partial class GUI : global::System.Windows.Forms.Form
 {
 	// Token: 0x06002207 RID: 8711 RVA: 0x000170FC File Offset: 0x000152FC
@@ -3074,35 +3074,6 @@ internal partial class GUI : global::System.Windows.Forms.Form
 		this.LvGame.AllowReorder = true;
 		this.LvGame.AllowSort = false;
 		this.LvGame.CheckBoxes = true;
-		this.columnHeader_4.Text = "Name";
-		this.columnHeader_4.Width = 80;
-		this.columnHeader_5.Text = "Lvl";
-		this.columnHeader_5.Width = 32;
-		this.columnHeader_6.Text = "Phái";
-		this.columnHeader_6.Width = 55;
-		this.columnHeader_7.Text = "Status";
-		this.columnHeader_7.Width = 42;
-		this.columnHeader_8.Text = "HP";
-		this.columnHeader_8.Width = 33;
-		this.columnHeader_9.Text = "MP";
-		this.columnHeader_9.Width = 32;
-		this.columnHeader_10.Text = "Pet";
-		this.columnHeader_10.Width = 32;
-		this.columnHeader_11.Text = "Online";
-		this.columnHeader_11.Width = 45;
-		this.columnHeader_12.Text = "Exp";
-		this.columnHeader_12.Width = 54;
-		this.columnHeader_13.Text = "Exp/H";
-		this.columnHeader_13.Width = 44;
-		this.columnHeader_14.Text = "Vị trí";
-		this.columnHeader_14.Width = 70;
-		this.columnHeader_15.Text = "Đội Ngũ";
-		this.columnHeader_15.Width = 65;
-		this.columnHeader_16.Text = "HĐ";
-		this.columnHeader_16.Width = 32;
-		this.columnHeader_17.Text = "Vàng";
-		this.columnHeader_17.Width = 40;
-		this.columnHeader_18.Text = "RunTime";
 		this.LvGame.Columns.AddRange(new global::System.Windows.Forms.ColumnHeader[]
 		{
 			this.columnHeader_4, this.columnHeader_5, this.columnHeader_6, this.columnHeader_7, this.columnHeader_8, this.columnHeader_9, this.columnHeader_10, this.columnHeader_11, this.columnHeader_12, this.columnHeader_13,
@@ -3133,6 +3104,35 @@ internal partial class GUI : global::System.Windows.Forms.Form
 		this.LvGame.MouseDown += new global::System.Windows.Forms.MouseEventHandler(this.LvGame_MouseDown);
 		this.LvGame.MouseMove += new global::System.Windows.Forms.MouseEventHandler(this.LvGame_MouseMove);
 		this.LvGame.MouseUp += new global::System.Windows.Forms.MouseEventHandler(this.LvGame_MouseUp);
+		this.columnHeader_4.Text = "Name";
+		this.columnHeader_4.Width = 80;
+		this.columnHeader_5.Text = "Lvl";
+		this.columnHeader_5.Width = 32;
+		this.columnHeader_6.Text = "Phái";
+		this.columnHeader_6.Width = 55;
+		this.columnHeader_7.Text = "Status";
+		this.columnHeader_7.Width = 42;
+		this.columnHeader_8.Text = "HP";
+		this.columnHeader_8.Width = 33;
+		this.columnHeader_9.Text = "MP";
+		this.columnHeader_9.Width = 32;
+		this.columnHeader_10.Text = "Pet";
+		this.columnHeader_10.Width = 32;
+		this.columnHeader_11.Text = "Online";
+		this.columnHeader_11.Width = 45;
+		this.columnHeader_12.Text = "Exp";
+		this.columnHeader_12.Width = 54;
+		this.columnHeader_13.Text = "Exp/H";
+		this.columnHeader_13.Width = 44;
+		this.columnHeader_14.Text = "Vị trí";
+		this.columnHeader_14.Width = 70;
+		this.columnHeader_15.Text = "Đội Ngũ";
+		this.columnHeader_15.Width = 65;
+		this.columnHeader_16.Text = "HĐ";
+		this.columnHeader_16.Width = 32;
+		this.columnHeader_17.Text = "Vàng";
+		this.columnHeader_17.Width = 40;
+		this.columnHeader_18.Text = "RunTime";
 		this.tabBoottom.Controls.Add(this.tabBuff);
 		this.tabBoottom.Controls.Add(this.tabQ);
 		this.tabBoottom.Controls.Add(this.tabPage1);
@@ -3168,12 +3168,6 @@ internal partial class GUI : global::System.Windows.Forms.Form
 		this.lvSkill.AllowReorder = true;
 		this.lvSkill.AllowSort = true;
 		this.lvSkill.CheckBoxes = true;
-		this.columnHeader_24.Text = "Name";
-		this.columnHeader_24.Width = 144;
-		this.columnHeader_25.Text = "PK";
-		this.columnHeader_25.Width = 33;
-		this.columnHeader_26.Text = "Delay";
-		this.columnHeader_26.Width = 39;
 		this.lvSkill.Columns.AddRange(new global::System.Windows.Forms.ColumnHeader[] { this.columnHeader_24, this.columnHeader_25, this.columnHeader_26 });
 		this.lvSkill.Dock = global::System.Windows.Forms.DockStyle.Fill;
 		this.lvSkill.DoubleClickActivation = false;
@@ -3190,6 +3184,12 @@ internal partial class GUI : global::System.Windows.Forms.Form
 		this.lvSkill.ItemChecked += new global::System.Windows.Forms.ItemCheckedEventHandler(this.lvSkill_ItemChecked);
 		this.lvSkill.DragDrop += new global::System.Windows.Forms.DragEventHandler(this.lvSkill_DragDrop);
 		this.lvSkill.MouseDown += new global::System.Windows.Forms.MouseEventHandler(this.lvSkill_MouseDown);
+		this.columnHeader_24.Text = "Name";
+		this.columnHeader_24.Width = 144;
+		this.columnHeader_25.Text = "PK";
+		this.columnHeader_25.Width = 33;
+		this.columnHeader_26.Text = "Delay";
+		this.columnHeader_26.Width = 39;
 		this.panelEx3.Controls.Add(this.checkSkill);
 		this.panelEx3.Controls.Add(this.txtSearchName);
 		this.panelEx3.Dock = global::System.Windows.Forms.DockStyle.Top;
@@ -3220,8 +3220,6 @@ internal partial class GUI : global::System.Windows.Forms.Form
 		this.lvFunction.AllowReorder = true;
 		this.lvFunction.AllowSort = false;
 		this.lvFunction.CheckBoxes = true;
-		this.columnHeader_23.Text = "Name";
-		this.columnHeader_23.Width = 126;
 		this.lvFunction.Columns.AddRange(new global::System.Windows.Forms.ColumnHeader[] { this.columnHeader_23 });
 		this.lvFunction.Dock = global::System.Windows.Forms.DockStyle.Fill;
 		this.lvFunction.DoubleClickActivation = false;
@@ -3298,6 +3296,8 @@ internal partial class GUI : global::System.Windows.Forms.Form
 		this.lvFunction.View = global::System.Windows.Forms.View.Details;
 		this.lvFunction.ItemChecked += new global::System.Windows.Forms.ItemCheckedEventHandler(this.lvFunction_ItemChecked);
 		this.lvFunction.SelectedIndexChanged += new global::System.EventHandler(this.lvFunction_SelectedIndexChanged);
+		this.columnHeader_23.Text = "Name";
+		this.columnHeader_23.Width = 126;
 		this.txtSearchFuntion.Dock = global::System.Windows.Forms.DockStyle.Top;
 		this.txtSearchFuntion.Location = new global::System.Drawing.Point(0, 0);
 		this.txtSearchFuntion.Name = "txtSearchFuntion";
@@ -4139,14 +4139,6 @@ internal partial class GUI : global::System.Windows.Forms.Form
 		this.lvInbox.AllowDrop = true;
 		this.lvInbox.AllowReorder = true;
 		this.lvInbox.AllowSort = true;
-		this.columnHeader_27.Text = "Time";
-		this.columnHeader_27.Width = 80;
-		this.columnHeader_28.Text = "From";
-		this.columnHeader_28.Width = 70;
-		this.columnHeader_29.Text = "To";
-		this.columnHeader_29.Width = 70;
-		this.columnHeader_30.Text = "Content";
-		this.columnHeader_30.Width = 141;
 		this.lvInbox.Columns.AddRange(new global::System.Windows.Forms.ColumnHeader[] { this.columnHeader_27, this.columnHeader_28, this.columnHeader_29, this.columnHeader_30 });
 		this.lvInbox.ContextMenuStrip = this.contextMenuStrip1;
 		this.lvInbox.Dock = global::System.Windows.Forms.DockStyle.Fill;
@@ -4164,6 +4156,14 @@ internal partial class GUI : global::System.Windows.Forms.Form
 		this.lvInbox.View = global::System.Windows.Forms.View.Details;
 		this.lvInbox.SelectedIndexChanged += new global::System.EventHandler(this.lvInbox_SelectedIndexChanged);
 		this.lvInbox.DoubleClick += new global::System.EventHandler(this.lvInbox_DoubleClick);
+		this.columnHeader_27.Text = "Time";
+		this.columnHeader_27.Width = 80;
+		this.columnHeader_28.Text = "From";
+		this.columnHeader_28.Width = 70;
+		this.columnHeader_29.Text = "To";
+		this.columnHeader_29.Width = 70;
+		this.columnHeader_30.Text = "Content";
+		this.columnHeader_30.Width = 141;
 		this.txtContent.Dock = global::System.Windows.Forms.DockStyle.Bottom;
 		this.txtContent.Location = new global::System.Drawing.Point(0, 372);
 		this.txtContent.Margin = new global::System.Windows.Forms.Padding(2);
