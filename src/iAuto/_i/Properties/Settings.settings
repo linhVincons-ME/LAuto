@@ -1,0 +1,66 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile CurrentProfile="(Default)" GeneratedClassNamespace="_i.Properties" GeneratedClassName="Settings" xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Version" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1.0.5</Value>
+    </Setting>
+    <Setting Name="SystemCfg" Type="System.String" Scope="User">
+      <Value Profile="(Default)">[Variable]
+Launch_GameVersion01_First=1
+Launch_GameVersion01=0
+Login_Provider=3
+View_WaveWater=0
+View_EffectLevel=0
+View_MaxWindow=0
+Account_LogonType=1
+Account_MailIndex_AlterFlag=1
+View_ModelShowLogic=2
+Game_MiBao=0
+View_HDRFilter=0
+View_VisibleRangeLevelNew=2
+View_DefaultCamera=0
+Account_MailIndex=0
+View_FullScreen=0
+View_ModelEffect=1
+Camera_RestoreView=0
+View_FullScreenLight=0
+View_EnableFog=1
+View_TextureFiltering=0
+View_Transparency=0
+View_ObjectMove=0
+View_HumanLightmap=0
+View_Fanhunjiao=0
+View_Aplomb=1
+View_GaoZhenLv=0
+View_UpdateQuality=0
+View_InsteadModel=0
+Account_VNAgreement_CheckFlag=1
+View_Resoution=800,600</Value>
+    </Setting>
+    <Setting Name="HomePage" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://68.183.181.185/iauto/i.php</Value>
+    </Setting>
+    <Setting Name="PrivateKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;RSAKeyValue&gt;&lt;Modulus&gt;4jNPqDh6Qb34aVZohjDa+hZfJhCWpWU44l2CPqmaFv9bnnhIPBmyKw1bOPovCAf2K+iAgXk+BXQhPh3ik96Wekml7hu/s8oYl7ZWxRwvr/a+vy6CfDjg4aVl9ar1OnoaHAqEBbV4LhGRlGniiuVEzWOhmiR5OB/GBPlvw6Msz5i5lAhlzyON7qEvRe+FwHDA5qw8jcyZ6ndJDEXzuqM2k4FI7OQYFStSfYJg/x670qLNIrCbneCLq2jsEq/ZQKA+cpjABC7hstauKUBq1A/y0OdvMX06EJVJBG06BAojsFDsggIEXWQbH71hq3FcYa3DQA7s/WeUW+59uHTCtKDKocPs/WZKDVac1KfFEPT+Abc3zv8WtcYnCr+Cx28c++S0vKims5Uv/DWiaRj893JKKIwaCGqTzmNHdDKNtlAQHOQQHqagTLFbzRrSl6l3uXtVl0HqAJjav58AiWnA6ru7S7t4M11LWd3UEjphrSzgfzBX0HgC/WLs8dGmxNmW7WnRhmX2ZUKLkRznGGnAYZ1Wy7MN5XklCxfdEJ+a6QB7Mq2YF3wqW9yYeA/hgi78AZQSrcWv5fpspKAVdtLRxyXHcXVc6Lt/j4IZoXNnb0FHQZjDMOf6TkJHjNqFPjYHaK5jLidg7o0YPjP6t4imvlrNr7nWSF1JOmI2QSC24XChIlM=&lt;/Modulus&gt;&lt;Exponent&gt;AQAB&lt;/Exponent&gt;&lt;P&gt;+RMfEY6Ousxx6RecBR5OmyzPC84yY8TKSq8qoBthA11lCvzdYHUOQmYHk32GuaQRvmrViGT/7Ft2Wo2IXnElbYwef37mQo4Ug0f5k9zHIzZ98FE1J8l930iVj0908R8EGxnHupTnFDzx5kOGnbEJCeYM1dYB2uyiAdgt0eamwx4PPf5Lce8CXULcAT0W1O37EYTTDTYPfgo/uqQ+mtYsm2fFPEOvG4soeReQmF7qPnsM5gUVB5Z0uAEGzNdb87HXiLEA/XEbj4AIdsUG23mZraAkoN18lCOjC6X4dDleGeLMVb8rUodPUxlH+GuKDYudBKWIR1iTMxe8/iCyYnQ1Bw==&lt;/P&gt;&lt;Q&gt;6H1fwUWmt9M1FlvtzDCrZi69x78noPmn8seniR/D28bKpQd1XRfm0uUM+YbveT7Dkl7JBSMX9fKU+gR+0k/TfnPDWlE3tDzNCJN3b4IiO76gWYmmYlPQ3Vz8O4sKSGhiFvoBKAbKdZrBlH//GCIdkubM41yGFJS59V0VkOO8T/XzkaIPNdbDSOIJzpjJzWiTfUnc4INVKCnlq5zwLDTb6nj2u6/j9kCN8/a3NRLd4xZ+RtpE4HGVH9KWNogIaJwCHib5bn9WtLo/hqXxioHbpUrGJdcIgYcLCOlE0dU7Dwa+tD57nob2w+2YXyECJIsLTxWakn1PuyU8Xq3HOlWBVQ==&lt;/Q&gt;&lt;DP&gt;zaRw6VD3HNlBTz7T7RHpuoqTY17aEa9fiav4GHqibWHF0/2UVVgv7rhIlwhznIAOulWAeX1SI3YcUIU8SyVFzp16bK98MwUVgJKDSAZnT/Zkom6Z4YClcR1/hfQHTDDcdfeiBLV92CK9YezsjvOkz8xlWoO3wmXPGJDAu+WgV8ZQtVFoPugj3pYeCNPELwdRXFR64BR7VAfoOBP1MGeWKrTRjoEfaTFKuDexhWwQIIf9zUfy5fHd6jHGyIcifyCdIFlrxNSG+cKuukjP8ZMDQ+vNcheMDM8jhbGBYYwf2mV7aWxNu3TGFIjx9/Pp5mcXu8djrew+lFeMDZE3Vrw1Lw==&lt;/DP&gt;&lt;DQ&gt;QThSsXRppa4BeYlGd367xomcQbnVUypWPBxYWnZnynLFDHDAMuJupYEOF74L1haOZLRkbiV/JkbsFgtGzJcKPLIa/m5EUzKvThWYbtax5dK/Rv7/hxv+PutD8yw5MUDfK5Ts2B63kzBb193kYQ/I/hnzJmEhWAq09Ckt0Jyiikf0EUnGPJNH611F5QglrJMGtSIQbYdKT18ZiAAZvD0D6I4QoWxhZgaMDAGNOb1WM8tul0/J/LDAZdH8w8V7nmUNjwnd9WqRl1ecVJie3v048fC9D4Z4Y2XP6asO3FKWI8v/ma7hnQI9nY88rIsk/71l6cSkvS2cPWLfwau8dRfhlQ==&lt;/DQ&gt;&lt;InverseQ&gt;BN6JvlCIGxHTU4kZKYfvs6TWCgXNVIEFalJrN8MBiK4d8aTq3NHVcK5l0bIUwegO3h0oJtV79bENtVSwbiKTU5whzE3KiGQ3DYfjalixKwcJUNu4IF79vT7eV4DD5jx5H2HQ0EtHvKb14L2n9miXXX64XYx4/a94HiJaWU6G59XPgFR2pCdAhAEVWZx7yVcgjCgROleTsBPYBTo1yG0F1Z2ATrVNiMl8m5D4h0gplHTb3npGY7McnL2BjFSQTkH/eYssjlCExt++PyMK5aZt4gnxlfg9nqXIG/0OgaVGemJQABfmoGYhMlF5Xn+QRnXsPkglBielyXPwvTsTxCeK0Q==&lt;/InverseQ&gt;&lt;D&gt;xyJC6yYlQwEZ0qo2RIR4EphlVV5fMOYmqOmHQuEOfVZ68syTUw2QE2SjvUpK4zgXGNqLXvA8kJKGvWeT03euY6O4hyE4p++vrMfiJY7F0JRZoncwemmcWCnC0/6X+s4JdEwxo9D5Jx1iWxTIUly6MFKYrtmTObyHGFP7d3CMf4nFPjQSZMO5LK4LrvbJefwJZkmU2YSYr5gp37spcVJENqEncRzwspo7+bAw8ge9dBbMntB5fwhyDQnGYkEa8lDgCQS+bjBTk5x5IGnMYjpUGmLUOe4zkuvJpzL9UxcWCh+DxoQ+EXWSh2OyuzqGCJvvetJpAkEQk8omNZ/c1SWEnDKsGOZ6ZQAaH/rBI0ZfzVrlt/8Z4oQnL7O1EU1fH2uPsPsmADl2FUz8dLrwn+AQd26NQVVO/XEXoKFj8+yNQG4e5VetoqWt9SIcJJMu3u9MYtKGiqoqTlmHmdzynwy14UoN88tkHr0pPMRWWAnv3t2tBcJARFXDDd6L9FyAfv0Tw+cygg11OcSn++ISV1AhCrKBTwMZVyNSgRoxCseMHiBuxAtmK2iVz5YnfIroI+DRHIMJfXanyLepeTWuTpduCx3NWvsBU83ndZtwEbbHSOLoHf0msY8r3tbJ1lNsaEzqI5Y4k48kG6BpbjWVCTlcwA+8sE7D2OaJOwuV6unNCQk=&lt;/D&gt;&lt;/RSAKeyValue&gt;</Value>
+    </Setting>
+    <Setting Name="PublicKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;RSAKeyValue&gt;&lt;Modulus&gt;Z6kb/UZDJZf62SXYTk8It7ITXWuAiBqnAzMKbazGNahqpq6C+ZNHrCMDNt6wuE1t09o61u2vdPCNK0Y3fkZQp8h6QTIKU5kY+TBpojXbcEPiqtCvYmjUkWdoRNwiubqf9nBrJwSufha53IuF1cwChS7jLEWe4FrtVOfCyLwC9l45uaTnEBKmN0W0JalatEOUAj24YK1ifx3fuEEtyP5f4EzT3sbKb3p43L4RvVkDMEgEkFPh0IPvJBEz7jWEgXbY14EXvi0x7AFtUSJS1PQ2ruz5NHFmcRNVIWbZKfLyylDIeR+9YIJyp/mJ+EUXD3yPklyXk7xhat4WNR9YQWxMVE/F8nB0scF5jkpg7OuJTxvxp0N3A36B3Zfsbk7aZIfSd2U6rYn6yIUo7/FuUANNwjR/s7LA8S8salIy3IbgpNHohChgm5y0mEi11rLFaCq+IBKEnTCaZYtkinYrYYk7QKBdn14tojO6S920cHd/1C4qreK5sd8W/jaGucETDLgNxgb9H4s4Mh4IQlHe7RmfAQqQaXIJO5H1wzGcsILRqGwpDWYtLMk7HVBUOMrJjTc8AfteT4mOp/3C7JsbrRyNMzjCwPLhIeZdK+C46OmRaQOdrXOC/jcGyA9ehNCwsFlH2Udx0+vV9I+abZfzo9H9e/qBAisDo9fQz+J0InX9PrU=&lt;/Modulus&gt;&lt;Exponent&gt;AQAB&lt;/Exponent&gt;&lt;/RSAKeyValue&gt;</Value>
+    </Setting>
+    <Setting Name="PublicKeyEx" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;RSAKeyValue&gt;&lt;Modulus&gt;kKN2Evuoj+iuqUIHSKCS+Qng/GBCvLV3oP2de2wg4mSVMDOL4QmxMyaUnkH3Vviod03wRTI/ilyVgPMQsiuxJFjsWcu5CsLh0p54oAuDd1WDeMYHe9+51Y5qwv+aYHW0LolxCB4rt151LwMnlna08J0hSt0bxxMuUe+yPLYSERFCyayUFBMViA8XfS6fZYXs9eEaZGg8rqoFR0nZvh7d049JO/BVXjP/QTK4mC8ASkbTz+n2WDWxVx1kYDN0pSDNlsVu1QPU35E+y5vCR39+gakqL1kGjdqazIwfQC79Rn06vf/VuapfYlutKG/lj2jSX1RdkkNPewCu0/ZfCxlxoSQAi+gQx9VwjZUQ7dTw9f1afDnsPVPzM38hGNyWw9doGEdPiKgXx8fIS5T+4HwFWkjFSwp+iygWet0Zxz6fh0DT47P4jvcH8WKOMxpa1t0jyRogWf6N52l3ic7qBN/DYS+DFqvMb9sGXTJfaccFgVqGJLxn1y9Dg9NEgkVquedb2A3nLa4uRNqtOyit1YVerkI1e53nq0e3M8PH+MZQuIvj1nhz4+IbNl9PUpD2MMgVbQP5TGABS6fdG0n+2AlQJGreDplr5EVBlOQbs61sW3uKBuHjcTIbcIsOeS5R3rSE82BNbWxX6rdRmviJ1R76uatyWovnyRFkM4G7KWtT6/E=&lt;/Modulus&gt;&lt;Exponent&gt;AQAB&lt;/Exponent&gt;&lt;/RSAKeyValue&gt;</Value>
+    </Setting>
+    <Setting Name="HomePageEx" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://68.183.181.185/iauto/address/i.php</Value>
+    </Setting>
+    <Setting Name="CaptchaServer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">68.183.181.185</Value>
+    </Setting>
+    <Setting Name="CaptchaPort" Type="System.String" Scope="User">
+      <Value Profile="(Default)">5445</Value>
+    </Setting>
+    <Setting Name="Move" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://68.183.181.185/move.php</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

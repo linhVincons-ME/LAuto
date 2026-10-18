@@ -1,0 +1,12 @@
+﻿using System;
+
+// Token: 0x0200016C RID: 364
+public enum GEnum6 : uint
+{
+	// Token: 0x04000D3E RID: 3390
+	MEM_IMAGE = 16777216U,
+	// Token: 0x04000D3F RID: 3391
+	MEM_MAPPED = 262144U,
+	// Token: 0x04000D40 RID: 3392
+	MEM_PRIVATE = 131072U
+}
