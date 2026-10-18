@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -16,43 +16,51 @@ internal class Control0 : Control
 	public Control0(int int_5, int int_6, int int_7)
 	{
 		Color[,] array = new Color[4, 8];
-		array[0, 0] = Color.White;
-		array[0, 1] = Color.Gainsboro;
-		array[0, 2] = Color.Silver;
-		array[0, 3] = Color.SkyBlue;
-		array[0, 4] = Color.DarkSlateBlue;
-		array[0, 5] = Color.Gainsboro;
+		Color darkBg = Color.FromArgb(15, 23, 42);
+		Color darkBorder = Color.FromArgb(51, 65, 85);
+		Color darkSurface = Color.FromArgb(30, 41, 59);
+
+		array[0, 0] = darkBg;
+		array[0, 1] = darkBorder;
+		array[0, 2] = darkSurface;
+		array[0, 3] = Color.FromArgb(14, 165, 233);
+		array[0, 4] = Color.FromArgb(2, 132, 199);
+		array[0, 5] = darkBorder;
 		array[0, 6] = Color.DarkGreen;
 		array[0, 7] = Color.Chartreuse;
-		array[1, 0] = Color.White;
-		array[1, 1] = Color.Gainsboro;
-		array[1, 2] = Color.Silver;
+
+		array[1, 0] = darkBg;
+		array[1, 1] = darkBorder;
+		array[1, 2] = darkSurface;
 		array[1, 3] = Color.Red;
 		array[1, 4] = Color.DarkRed;
-		array[1, 5] = Color.Gainsboro;
+		array[1, 5] = darkBorder;
 		array[1, 6] = Color.Coral;
 		array[1, 7] = Color.LightCoral;
-		array[2, 0] = Color.White;
-		array[2, 1] = Color.Gainsboro;
-		array[2, 2] = Color.Silver;
+
+		array[2, 0] = darkBg;
+		array[2, 1] = darkBorder;
+		array[2, 2] = darkSurface;
 		array[2, 3] = Color.GreenYellow;
 		array[2, 4] = Color.Yellow;
 		array[2, 5] = Color.Gold;
 		array[2, 6] = Color.Orange;
 		array[2, 7] = Color.OrangeRed;
-		array[3, 0] = Color.White;
-		array[3, 1] = Color.Gainsboro;
-		array[3, 2] = Color.Silver;
+
+		array[3, 0] = darkBg;
+		array[3, 1] = darkBorder;
+		array[3, 2] = darkSurface;
 		array[3, 3] = Color.Red;
 		array[3, 4] = Color.Crimson;
-		array[3, 5] = Color.Gainsboro;
+		array[3, 5] = darkBorder;
 		array[3, 6] = Color.DarkViolet;
 		array[3, 7] = Color.Violet;
+
 		this.color_0 = array;
-		this.color_1 = Color.DarkSlateBlue;
+		this.color_1 = Color.FromArgb(14, 165, 233);
 		this.int_0 = 100;
-		this.color_2 = Color.SkyBlue;
-		this.color_3 = Color.Gainsboro;
+		this.color_2 = Color.FromArgb(56, 189, 248);
+		this.color_3 = darkBorder;
 		this.size_0 = new Size(8, 8);
 		this.bool_0 = true;
 		this.bool_1 = true;
@@ -60,9 +68,9 @@ internal class Control0 : Control
 		this.color_5 = Color.DarkGreen;
 		this.bool_2 = true;
 		this.int_2 = 10;
-		this.color_6 = Color.Gainsboro;
-		this.color_7 = Color.White;
-		this.color_8 = Color.Silver;
+		this.color_6 = darkBorder;
+		this.color_7 = Color.FromArgb(24, 32, 47);
+		this.color_8 = darkSurface;
 		this.size_1 = new Size(8, 8);
 		this.int_3 = 15;
 		this.int_4 = 50;

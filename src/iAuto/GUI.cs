@@ -2808,6 +2808,13 @@ internal partial class GUI : Form
 	// Token: 0x0600212F RID: 8495 RVA: 0x000F2A14 File Offset: 0x000F0C14
 	private void GUI_Load(object sender, EventArgs e)
 	{
+		try
+		{
+			DarkTheme.Apply(this);
+		}
+		catch
+		{
+		}
 		this.muVoDao.Click += this.muVoDao_Click;
 		this.muVoDao1.Click += this.muVoDao1_Click;
 		ChatServerMMF.smethod_0();
@@ -12106,8 +12113,8 @@ internal partial class GUI : Form
 				}
 			}
 
-			// Style all child controls across all panels, listviews, comboboxes, textboxes
-			this.StyleAllChildControls(this);
+			// Style all controls across all tabs and panels using DarkTheme
+			DarkTheme.Apply(this);
 
 			// Info tab (tabPay)
 			this.tabPay.Text = "Info";
@@ -12134,18 +12141,18 @@ internal partial class GUI : Form
 			this.txtUserChip.ForeColor = Color.FromArgb(241, 245, 249);
 			this.txtUserChip.ReadOnly = true;
 
-			this.txtSendChip.Text = "Bản Quyền: Trọn Đời (Lifetime)";
+			this.txtSendChip.Text = "Trạng Thái: Sẵn Sàng (Active)";
 			this.txtSendChip.BackColor = Color.FromArgb(15, 23, 42);
 			this.txtSendChip.ForeColor = Color.FromArgb(74, 222, 128);
 			this.txtSendChip.ReadOnly = true;
 
-			this.btnSendChip.Text = "VIP";
+			this.btnSendChip.Text = "Info";
 			this.btnSendChip.BackColor = Color.FromArgb(30, 41, 59);
 			this.btnSendChip.ForeColor = Color.FromArgb(56, 189, 248);
 			this.btnSendChip.FlatStyle = FlatStyle.Flat;
 			this.btnSendChip.FlatAppearance.BorderColor = Color.FromArgb(42, 54, 79);
 
-			this.txtGiftCode.Text = "LAuto Pro (Clean & Offline)";
+			this.txtGiftCode.Text = "LAuto v2 (Build 2026)";
 			this.txtGiftCode.BackColor = Color.FromArgb(15, 23, 42);
 			this.txtGiftCode.ForeColor = Color.FromArgb(241, 245, 249);
 			this.txtGiftCode.ReadOnly = true;
@@ -12156,7 +12163,7 @@ internal partial class GUI : Form
 			this.btnOpenGiftCode.FlatStyle = FlatStyle.Flat;
 			this.btnOpenGiftCode.FlatAppearance.BorderColor = Color.FromArgb(42, 54, 79);
 
-			this.txtNewPass.Text = "VNG / Private / Origin";
+			this.txtNewPass.Text = "Hỗ Trợ: VNG / Private / Origin";
 			this.txtNewPass.BackColor = Color.FromArgb(15, 23, 42);
 			this.txtNewPass.ForeColor = Color.FromArgb(241, 245, 249);
 			this.txtNewPass.ReadOnly = true;
@@ -12181,10 +12188,10 @@ internal partial class GUI : Form
 			Button[] statusBtns = new Button[] { this.btnBlance, this.btnDayVNG, this.btnDayPRI, this.btnDayORI };
 			string[] statusTexts = new string[]
 			{
-				"Tính Năng: Không Giới Hạn",
-				"✔ Hạn Dùng VNG: Vĩnh Viễn",
-				"✔ Hạn Dùng Private: Vĩnh Viễn",
-				"✔ Hạn Dùng Origin: Vĩnh Viễn"
+				"Trạng Thái: Hoạt Động Bình Thường",
+				"✔ Client VNG: Hỗ Trợ Đầy Đủ",
+				"✔ Client Private: Hỗ Trợ Đầy Đủ",
+				"✔ Client Origin: Hỗ Trợ Đầy Đủ"
 			};
 			for (int i = 0; i < statusBtns.Length; i++)
 			{
@@ -12249,72 +12256,9 @@ internal partial class GUI : Form
 		}
 	}
 
-	private readonly List<Control> styledControls = new List<Control>();
-
 	private void StyleAllChildControls(Control root)
 	{
-		if (root == null) return;
-		foreach (Control c in root.Controls)
-		{
-			if (c is ListView lv)
-			{
-				lv.BackColor = Color.FromArgb(22, 30, 46);
-				lv.ForeColor = Color.FromArgb(241, 245, 249);
-				foreach (ListViewItem item in lv.Items)
-				{
-					item.BackColor = Color.FromArgb(22, 30, 46);
-					item.ForeColor = Color.FromArgb(241, 245, 249);
-					foreach (ListViewItem.ListViewSubItem sub in item.SubItems)
-					{
-						sub.BackColor = Color.FromArgb(22, 30, 46);
-						sub.ForeColor = Color.FromArgb(241, 245, 249);
-					}
-				}
-			}
-			else if (c is ComboBox cbo)
-			{
-				cbo.BackColor = Color.FromArgb(26, 34, 52);
-				cbo.ForeColor = Color.FromArgb(241, 245, 249);
-				cbo.FlatStyle = FlatStyle.Flat;
-				cbo.DrawMode = DrawMode.OwnerDrawFixed;
-				cbo.DrawItem -= this.Cbo_DrawItem;
-				cbo.DrawItem += this.Cbo_DrawItem;
-				if (!this.styledControls.Contains(cbo))
-				{
-					this.styledControls.Add(cbo);
-					new CyberComboBoxStyler(cbo);
-				}
-			}
-			else if (c is TextBox tb)
-			{
-				tb.BackColor = Color.FromArgb(15, 23, 42);
-				tb.ForeColor = Color.FromArgb(241, 245, 249);
-			}
-			else if (c is CheckBox cb)
-			{
-				cb.ForeColor = Color.FromArgb(241, 245, 249);
-			}
-			else if (c is RadioButton rb)
-			{
-				rb.ForeColor = Color.FromArgb(241, 245, 249);
-			}
-			else if (c is Label lbl)
-			{
-				if (lbl.ForeColor == Color.Black || lbl.ForeColor == SystemColors.ControlText)
-				{
-					lbl.ForeColor = Color.FromArgb(241, 245, 249);
-				}
-			}
-			else if (c is Panel p && !(p is TabPage))
-			{
-				p.BackColor = Color.FromArgb(18, 24, 36);
-			}
-
-			if (c.HasChildren)
-			{
-				this.StyleAllChildControls(c);
-			}
-		}
+		DarkTheme.Apply(root);
 	}
 
 	private void Cbo_DrawItem(object sender, DrawItemEventArgs e)
@@ -12419,7 +12363,7 @@ internal class ModernDarkToolStripRenderer : ToolStripProfessionalRenderer
 
 	protected override void OnRenderItemText(ToolStripItemTextRenderEventArgs e)
 	{
-		e.TextColor = Color.FromArgb(241, 245, 249);
+		e.TextColor = e.Item.Enabled ? Color.FromArgb(241, 245, 249) : Color.FromArgb(100, 116, 139);
 		base.OnRenderItemText(e);
 	}
 }
@@ -12441,6 +12385,14 @@ internal class ModernDarkColorTable : ProfessionalColorTable
 	public override Color MenuItemPressedGradientEnd => Color.FromArgb(30, 41, 59);
 	public override Color SeparatorDark => Color.FromArgb(42, 54, 79);
 	public override Color SeparatorLight => Color.FromArgb(30, 41, 59);
+
+	public override Color CheckBackground => Color.FromArgb(30, 58, 138);
+	public override Color CheckSelectedBackground => Color.FromArgb(37, 99, 235);
+	public override Color CheckPressedBackground => Color.FromArgb(29, 78, 216);
+	public override Color ButtonCheckedGradientBegin => Color.FromArgb(30, 58, 138);
+	public override Color ButtonCheckedGradientMiddle => Color.FromArgb(30, 58, 138);
+	public override Color ButtonCheckedGradientEnd => Color.FromArgb(30, 58, 138);
+	public override Color ButtonSelectedHighlight => Color.FromArgb(30, 41, 59);
 }
 
 internal class CyberComboBoxStyler : NativeWindow

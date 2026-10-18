@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.CompilerServices;
@@ -17,9 +17,8 @@ internal class Class286 : GroupBox
 		this.bool_0 = false;
 		this.m_checkBox.Parent = this;
 		this.m_checkBox.Location = new Point(10, 0);
-		this.Boolean_0 = true;
-		Color color = new VisualStyleRenderer(VisualStyleElement.Button.GroupBox.Normal).GetColor(ColorProperty.TextColor);
-		this.m_checkBox.ForeColor = color;
+		this.m_checkBox.ForeColor = Color.FromArgb(56, 189, 248);
+		this.m_checkBox.BackColor = Color.Transparent;
 	}
 
 	// Token: 0x17000495 RID: 1173
