@@ -35914,7 +35914,7 @@ internal class Class106
 	{
 		if (this.Class502_0.Int32_5 == 1)
 		{
-			this.method_375("local _u = unpack or table.unpack; local t = {SystemSetup:GameGetData()}; if t and #t >= 16 then if t[10] then t[10] = tonumber(t[10]) or t[10]; end; t[16] = 1; SystemSetup:SaveGameSetup(_u(t)); elseif t and #t > 0 then SystemSetup:SaveGameSetup(_u(t)); end", false);
+			this.method_375("pcall(function() local t = {SystemSetup:GameGetData()}; local n = table.getn(t); if n >= 16 then t[10] = tonumber(t[10]) or t[10]; t[16] = 1; SystemSetup:SaveGameSetup(unpack(t)); end end)", false);
 		}
 	}
 
