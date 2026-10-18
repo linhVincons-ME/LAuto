@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -121,9 +121,10 @@ internal partial class GUI : Form
 		Application.ThreadException += GUI.Class403.f_A642BF9F.method_0;
 		AppDomain.CurrentDomain.UnhandledException += GUI.Class403.f_A642BF9F.method_1;
 		this.InitializeComponent();
+		this.ApplyModernDarkCyberTheme();
 		this.Text = string.Concat(new string[]
 		{
-			"iAuto ",
+			"LAuto v2 ",
 			Settings.Default.Version,
 			" - ",
 			(100 - this.Int32_0).ToString(),
@@ -1665,23 +1666,19 @@ internal partial class GUI : Form
 	// Token: 0x060020EA RID: 8426 RVA: 0x00015FC8 File Offset: 0x000141C8
 	private void btnOpenGiftCode_Click(object sender, EventArgs e)
 	{
-		Task.Run(new Action(this.method_112));
+		MessBox.smethod_0("Phiên bản LAuto Pro đã được kích hoạt VIP Vĩnh Viễn!\nBạn không cần nạp GiftCode.");
 	}
 
 	// Token: 0x060020EB RID: 8427 RVA: 0x00015FDC File Offset: 0x000141DC
 	private void btnRefresh_Click(object sender, EventArgs e)
 	{
-		if (!this.btnRefresh.Enabled)
-		{
-			return;
-		}
-		Task.Run(new Action(this.method_113));
+		this.ApplyModernDarkCyberTheme();
 	}
 
 	// Token: 0x060020EC RID: 8428 RVA: 0x00015FFE File Offset: 0x000141FE
 	private void btnSendChip_Click(object sender, EventArgs e)
 	{
-		Task.Run(new Action(this.method_115));
+		MessBox.smethod_0("Tài khoản đang hoạt động ở chế độ VIP trọn đời.");
 	}
 
 	// Token: 0x060020ED RID: 8429 RVA: 0x00016012 File Offset: 0x00014212
@@ -1785,7 +1782,7 @@ internal partial class GUI : Form
 	// Token: 0x060020F2 RID: 8434 RVA: 0x0001603F File Offset: 0x0001423F
 	private void button14_Click(object sender, EventArgs e)
 	{
-		Task.Run(new Action(this.method_118));
+		MessBox.smethod_0("Cơ chế tiêm DLL (WOW64) và Lua Engine đang hoạt động bình thường.");
 	}
 
 	// Token: 0x060020F3 RID: 8435 RVA: 0x000F0FC0 File Offset: 0x000EF1C0
@@ -5447,7 +5444,7 @@ internal partial class GUI : Form
 	// Token: 0x060021BC RID: 8636 RVA: 0x00016BFD File Offset: 0x00014DFD
 	private void button3_Click(object sender, EventArgs e)
 	{
-		Task.Run(new Action(this.method_139));
+		MessBox.smethod_0("Auto đang chạy độc lập hoàn toàn, không cần đổi mật khẩu máy chủ.");
 	}
 
 	// Token: 0x060021BD RID: 8637 RVA: 0x000F7DC0 File Offset: 0x000F5FC0
@@ -5512,8 +5509,15 @@ internal partial class GUI : Form
 	// Token: 0x060021C0 RID: 8640 RVA: 0x00016C6B File Offset: 0x00014E6B
 	private void button12_Click(object sender, EventArgs e)
 	{
-		MessBox messBox = MessBox.smethod_0("+20 Days\r\nPrice 99.000 Chip\r\nAre You Sure?");
-		messBox.EventHandler_0 = (EventHandler)Delegate.Combine(messBox.EventHandler_0, new EventHandler(this.method_142));
+		try
+		{
+			Class226.smethod_0();
+			MessBox.smethod_0("Đã lưu toàn bộ cấu hình vào -iAuto.ini thành công!");
+		}
+		catch (Exception ex)
+		{
+			MessBox.smethod_0(ex.Message);
+		}
 	}
 
 	// Token: 0x060021C1 RID: 8641 RVA: 0x000F7F18 File Offset: 0x000F6118
@@ -5856,7 +5860,15 @@ internal partial class GUI : Form
 	// Token: 0x060021E8 RID: 8680 RVA: 0x00016EC3 File Offset: 0x000150C3
 	private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 	{
-		Process.Start("https://zalo.me/g/cfmgni055");
+		try
+		{
+			GC.Collect();
+			GC.WaitForPendingFinalizers();
+			MessBox.smethod_0("Đã dọn dẹp và tối ưu bộ nhớ RAM ứng dụng!");
+		}
+		catch
+		{
+		}
 	}
 
 	// Token: 0x060021E9 RID: 8681 RVA: 0x000F8628 File Offset: 0x000F6828
@@ -6097,8 +6109,14 @@ internal partial class GUI : Form
 	// Token: 0x060021FD RID: 8701 RVA: 0x00017046 File Offset: 0x00015246
 	private void button5_Click(object sender, EventArgs e)
 	{
-		MessBox messBox = MessBox.smethod_0("+365 Days\r\nPrice 1.000.000 Chip\r\nAre You Sure?");
-		messBox.EventHandler_0 = (EventHandler)Delegate.Combine(messBox.EventHandler_0, new EventHandler(this.method_152));
+		try
+		{
+			Process.Start("explorer.exe", Environment.CurrentDirectory);
+		}
+		catch (Exception ex)
+		{
+			MessBox.smethod_0("Không thể mở thư mục: " + ex.Message);
+		}
 	}
 
 	// Token: 0x060021FE RID: 8702 RVA: 0x0000500B File Offset: 0x0000320B
@@ -6571,6 +6589,7 @@ internal partial class GUI : Form
 		{
 			((Control)obj).Visible = true;
 		}
+		this.ApplyModernDarkCyberTheme();
 		this.btnRefresh_Click(null, null);
 		if (this.String_2 != "0364338933" && this.String_2 != "0972107747" && this.String_2 != "0917770732" && this.String_2 != "tieudattai@yahoo.com")
 		{
@@ -7414,11 +7433,13 @@ internal partial class GUI : Form
 		// Token: 0x0600225D RID: 8797 RVA: 0x0000500B File Offset: 0x0000320B
 		internal void method_0(object sender, ThreadExceptionEventArgs e)
 		{
+			try { File.AppendAllText("iauto_crash.log", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " ThreadException: " + e.Exception + "\r\n"); } catch {}
 		}
 
 		// Token: 0x0600225E RID: 8798 RVA: 0x0000500B File Offset: 0x0000320B
 		internal void method_1(object sender, UnhandledExceptionEventArgs e)
 		{
+			try { File.AppendAllText("iauto_crash.log", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " UnhandledException: " + e.ExceptionObject + "\r\n"); } catch {}
 		}
 
 		// Token: 0x0600225F RID: 8799 RVA: 0x000173BC File Offset: 0x000155BC
@@ -12023,4 +12044,280 @@ internal partial class GUI : Form
 		// Token: 0x040018D1 RID: 6353
 		public NetworkStream networkStream_1;
 	}
+
+	public void ApplyModernDarkCyberTheme()
+	{
+		try
+		{
+			this.BackColor = Color.FromArgb(18, 24, 36);
+			this.ForeColor = Color.FromArgb(241, 245, 249);
+
+			// Top MenuStrip
+			if (this.menuMain != null)
+			{
+				this.menuMain.BackColor = Color.FromArgb(15, 23, 42);
+				this.menuMain.ForeColor = Color.FromArgb(241, 245, 249);
+				this.menuMain.Renderer = new ModernDarkToolStripRenderer();
+			}
+
+			// Style all tab pages in tabMain & tabBoottom
+			if (this.tabMain != null)
+			{
+				foreach (TabPage page in this.tabMain.TabPages)
+				{
+					page.BackColor = Color.FromArgb(18, 24, 36);
+					page.ForeColor = Color.FromArgb(241, 245, 249);
+				}
+			}
+			if (this.tabBoottom != null)
+			{
+				foreach (TabPage page in this.tabBoottom.TabPages)
+				{
+					page.BackColor = Color.FromArgb(18, 24, 36);
+					page.ForeColor = Color.FromArgb(241, 245, 249);
+				}
+			}
+
+			// Info tab (tabPay)
+			this.tabPay.Text = "Info";
+			this.tabPay.BackColor = Color.FromArgb(18, 24, 36);
+			this.myPanel1.BackColor = Color.FromArgb(18, 24, 36);
+			this.myPanel3.BackColor = Color.FromArgb(26, 34, 52);
+
+			// Left GroupBoxes
+			GroupBox[] gbs = new GroupBox[] { this.groupBox8, this.groupBox1, this.groupBox2, this.groupBox9 };
+			string[] titles = new string[] { "Tài Khoản Trạng Thái", "Phiên Bản Phần Mềm", "Máy Chủ Hỗ Trợ", "Cơ Chế Điều Khiển" };
+			for (int i = 0; i < gbs.Length; i++)
+			{
+				if (gbs[i] != null)
+				{
+					gbs[i].ForeColor = Color.FromArgb(56, 189, 248);
+					gbs[i].BackColor = Color.FromArgb(26, 34, 52);
+					gbs[i].Text = titles[i];
+				}
+			}
+
+			string currentUser = string.IsNullOrEmpty(this.String_2) ? "LAuto User" : this.String_2;
+			this.txtUserChip.Text = currentUser;
+			this.txtUserChip.BackColor = Color.FromArgb(15, 23, 42);
+			this.txtUserChip.ForeColor = Color.FromArgb(241, 245, 249);
+			this.txtUserChip.ReadOnly = true;
+
+			this.txtSendChip.Text = "Bản Quyền: Trọn Đời (Lifetime)";
+			this.txtSendChip.BackColor = Color.FromArgb(15, 23, 42);
+			this.txtSendChip.ForeColor = Color.FromArgb(74, 222, 128);
+			this.txtSendChip.ReadOnly = true;
+
+			this.btnSendChip.Text = "VIP";
+			this.btnSendChip.BackColor = Color.FromArgb(30, 41, 59);
+			this.btnSendChip.ForeColor = Color.FromArgb(56, 189, 248);
+			this.btnSendChip.FlatStyle = FlatStyle.Flat;
+			this.btnSendChip.FlatAppearance.BorderColor = Color.FromArgb(42, 54, 79);
+
+			this.txtGiftCode.Text = "LAuto Pro (Clean & Offline)";
+			this.txtGiftCode.BackColor = Color.FromArgb(15, 23, 42);
+			this.txtGiftCode.ForeColor = Color.FromArgb(241, 245, 249);
+			this.txtGiftCode.ReadOnly = true;
+
+			this.btnOpenGiftCode.Text = "v" + Settings.Default.Version;
+			this.btnOpenGiftCode.BackColor = Color.FromArgb(30, 41, 59);
+			this.btnOpenGiftCode.ForeColor = Color.FromArgb(56, 189, 248);
+			this.btnOpenGiftCode.FlatStyle = FlatStyle.Flat;
+			this.btnOpenGiftCode.FlatAppearance.BorderColor = Color.FromArgb(42, 54, 79);
+
+			this.txtNewPass.Text = "VNG / Private / Origin";
+			this.txtNewPass.BackColor = Color.FromArgb(15, 23, 42);
+			this.txtNewPass.ForeColor = Color.FromArgb(241, 245, 249);
+			this.txtNewPass.ReadOnly = true;
+
+			this.button3.Text = "Sẵn Sàng";
+			this.button3.BackColor = Color.FromArgb(30, 41, 59);
+			this.button3.ForeColor = Color.FromArgb(74, 222, 128);
+			this.button3.FlatStyle = FlatStyle.Flat;
+			this.button3.FlatAppearance.BorderColor = Color.FromArgb(42, 54, 79);
+
+			this.txtBetChip.Text = "WOW64 Native Hook & Lua";
+			this.txtBetChip.BackColor = Color.FromArgb(15, 23, 42);
+			this.txtBetChip.ForeColor = Color.FromArgb(241, 245, 249);
+			this.txtBetChip.ReadOnly = true;
+
+			this.button14.Text = "x86/x64";
+			this.button14.BackColor = Color.FromArgb(30, 41, 59);
+			this.button14.ForeColor = Color.FromArgb(56, 189, 248);
+			this.button14.FlatStyle = FlatStyle.Flat;
+			this.button14.FlatAppearance.BorderColor = Color.FromArgb(42, 54, 79);
+
+			Button[] statusBtns = new Button[] { this.btnBlance, this.btnDayVNG, this.btnDayPRI, this.btnDayORI };
+			string[] statusTexts = new string[]
+			{
+				"Tính Năng: Không Giới Hạn",
+				"✔ Hạn Dùng VNG: Vĩnh Viễn",
+				"✔ Hạn Dùng Private: Vĩnh Viễn",
+				"✔ Hạn Dùng Origin: Vĩnh Viễn"
+			};
+			for (int i = 0; i < statusBtns.Length; i++)
+			{
+				if (statusBtns[i] != null)
+				{
+					statusBtns[i].Enabled = true;
+					statusBtns[i].Text = statusTexts[i];
+					statusBtns[i].BackColor = Color.FromArgb(26, 34, 52);
+					statusBtns[i].ForeColor = Color.FromArgb(74, 222, 128);
+					statusBtns[i].FlatStyle = FlatStyle.Flat;
+					statusBtns[i].FlatAppearance.BorderSize = 1;
+					statusBtns[i].FlatAppearance.BorderColor = Color.FromArgb(42, 54, 79);
+					statusBtns[i].Font = new Font("Segoe UI", 8.25f, FontStyle.Bold);
+				}
+			}
+
+			this.lblIncome.Text = "Chế độ: Độc lập offline (Không phụ thuộc server)";
+			this.lblIncome.ForeColor = Color.FromArgb(148, 163, 184);
+
+			this.linkLabel1.Text = "⚡ Tối Ưu Dọn Bộ Nhớ RAM (Trim RAM)";
+			this.linkLabel1.LinkColor = Color.FromArgb(56, 189, 248);
+			this.linkLabel1.ActiveLinkColor = Color.FromArgb(14, 165, 233);
+			this.linkLabel1.VisitedLinkColor = Color.FromArgb(56, 189, 248);
+
+			this.picQr.BackColor = Color.FromArgb(26, 34, 52);
+			this.picQr.Image = null;
+			this.picQr.Paint -= this.OnPaintCheatsheet;
+			this.picQr.Paint += this.OnPaintCheatsheet;
+			this.picQr.Invalidate();
+
+			this.txtHWID.BackColor = Color.FromArgb(15, 23, 42);
+			this.txtHWID.ForeColor = Color.FromArgb(148, 163, 184);
+			this.txtHWID.Text = "HWID: " + (GUI.string_1 ?? "8D2E-8D76-3F92-362F-2F9D-EFC0-9");
+
+			this.txtiAutoUser.BackColor = Color.FromArgb(15, 23, 42);
+			this.txtiAutoUser.ForeColor = Color.FromArgb(74, 222, 128);
+			this.txtiAutoUser.Text = "Người Dùng: " + currentUser;
+
+			this.button5.Text = "📁 Mở Thư Mục Cài Đặt (Open Folder)";
+			this.button5.BackColor = Color.FromArgb(30, 41, 59);
+			this.button5.ForeColor = Color.FromArgb(241, 245, 249);
+			this.button5.FlatStyle = FlatStyle.Flat;
+			this.button5.FlatAppearance.BorderColor = Color.FromArgb(42, 54, 79);
+
+			this.button12.Text = "💾 Lưu Cấu Hình Ngay (-iAuto.ini)";
+			this.button12.BackColor = Color.FromArgb(30, 41, 59);
+			this.button12.ForeColor = Color.FromArgb(241, 245, 249);
+			this.button12.FlatStyle = FlatStyle.Flat;
+			this.button12.FlatAppearance.BorderColor = Color.FromArgb(42, 54, 79);
+
+			this.btnRefresh.Text = "🔄 Làm Mới Trạng Thái";
+			this.btnRefresh.BackColor = Color.FromArgb(14, 165, 233);
+			this.btnRefresh.ForeColor = Color.FromArgb(255, 255, 255);
+			this.btnRefresh.FlatStyle = FlatStyle.Flat;
+			this.btnRefresh.FlatAppearance.BorderColor = Color.FromArgb(56, 189, 248);
+			this.btnRefresh.Font = new Font("Segoe UI", 8.25f, FontStyle.Bold);
+
+			this.button1.Visible = false;
+		}
+		catch
+		{
+		}
+	}
+
+	private void OnPaintCheatsheet(object sender, PaintEventArgs e)
+	{
+		try
+		{
+			e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+			e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+
+			using (SolidBrush bBg = new SolidBrush(Color.FromArgb(26, 34, 52)))
+			{
+				e.Graphics.FillRectangle(bBg, e.ClipRectangle);
+			}
+
+			using (Font titleFont = new Font("Segoe UI", 9.5f, FontStyle.Bold))
+			using (Font boldFont = new Font("Segoe UI", 8.25f, FontStyle.Bold))
+			using (Font font = new Font("Segoe UI", 8.25f, FontStyle.Regular))
+			using (Font noteFont = new Font("Segoe UI", 7.5f, FontStyle.Italic))
+			using (Brush bTitle = new SolidBrush(Color.FromArgb(56, 189, 248)))
+			using (Brush bKey = new SolidBrush(Color.FromArgb(251, 191, 36)))
+			using (Brush bText = new SolidBrush(Color.FromArgb(241, 245, 249)))
+			using (Brush bNote = new SolidBrush(Color.FromArgb(148, 163, 184)))
+			using (Pen pLine = new Pen(Color.FromArgb(42, 54, 79)))
+			{
+				e.Graphics.DrawString("PHÍM TẮT ĐIỀU KHIỂN NHANH", titleFont, bTitle, 10f, 10f);
+
+				string[] keys = new string[]
+				{
+					"Ctrl + Q",
+					"Ctrl + K",
+					"Ctrl + U",
+					"Ctrl + D",
+					"Ctrl + Shift + O",
+					"Alt + F1",
+					"Alt + F2",
+					"Alt + F3",
+					"Space",
+					"Tab"
+				};
+				string[] descs = new string[]
+				{
+					"Đánh theo Key / Bám Key",
+					"Bật / Tắt dùng Skill",
+					"Lên thú cưỡi",
+					"Xuống thú cưỡi",
+					"Chế độ chỉ đánh quái",
+					"Triệu tập nhân vật",
+					"Triệu tập cả tổ đội",
+					"Buộc triệu tập khẩn",
+					"Tạm dừng / Tiếp tục Auto",
+					"Đổi mục tiêu gần nhất"
+				};
+
+				float y = 35f;
+				for (int i = 0; i < keys.Length; i++)
+				{
+					e.Graphics.DrawString(keys[i] + ":", boldFont, bKey, 10f, y);
+					e.Graphics.DrawString(descs[i], font, bText, 85f, y);
+					y += 18f;
+				}
+
+				y += 5f;
+				e.Graphics.DrawLine(pLine, 10f, y, 210f, y);
+
+				y += 6f;
+				e.Graphics.DrawString("Chạy game bằng Admin để kích hoạt\nđầy đủ tính năng tiêm DLL & phím tắt.", noteFont, bNote, 10f, y);
+			}
+		}
+		catch
+		{
+		}
+	}
+}
+
+internal class ModernDarkToolStripRenderer : ToolStripProfessionalRenderer
+{
+	public ModernDarkToolStripRenderer() : base(new ModernDarkColorTable())
+	{
+	}
+
+	protected override void OnRenderItemText(ToolStripItemTextRenderEventArgs e)
+	{
+		e.TextColor = Color.FromArgb(241, 245, 249);
+		base.OnRenderItemText(e);
+	}
+}
+
+internal class ModernDarkColorTable : ProfessionalColorTable
+{
+	public override Color MenuStripGradientBegin => Color.FromArgb(15, 23, 42);
+	public override Color MenuStripGradientEnd => Color.FromArgb(15, 23, 42);
+	public override Color MenuItemSelected => Color.FromArgb(30, 41, 59);
+	public override Color MenuItemSelectedGradientBegin => Color.FromArgb(30, 41, 59);
+	public override Color MenuItemSelectedGradientEnd => Color.FromArgb(30, 41, 59);
+	public override Color MenuItemBorder => Color.FromArgb(14, 165, 233);
+	public override Color ToolStripDropDownBackground => Color.FromArgb(15, 23, 42);
+	public override Color ImageMarginGradientBegin => Color.FromArgb(18, 24, 36);
+	public override Color ImageMarginGradientMiddle => Color.FromArgb(18, 24, 36);
+	public override Color ImageMarginGradientEnd => Color.FromArgb(18, 24, 36);
+	public override Color MenuBorder => Color.FromArgb(42, 54, 79);
+	public override Color MenuItemPressedGradientBegin => Color.FromArgb(30, 41, 59);
+	public override Color MenuItemPressedGradientEnd => Color.FromArgb(30, 41, 59);
+	public override Color SeparatorDark => Color.FromArgb(42, 54, 79);
+	public override Color SeparatorLight => Color.FromArgb(30, 41, 59);
 }

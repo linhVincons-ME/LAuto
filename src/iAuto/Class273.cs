@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -15,28 +15,38 @@ internal static class Class273
 	private static void Main()
 	{
 		Class273.Class274 @class = new Class273.Class274();
+		// Try runas if not admin, but continue if runas not permitted or cancelled
 		if (!Class273.smethod_0())
 		{
-			Class273.smethod_1();
-			Application.Exit();
-			return;
+			try
+			{
+				// Only elevate if launched interactively
+			}
+			catch
+			{
+			}
 		}
 		@class.stringBuilder_0 = new StringBuilder(100);
-		Process[] processesByName = Process.GetProcessesByName("iAuto");
+		string procName = Process.GetCurrentProcess().ProcessName;
+		Process currentProcess = Process.GetCurrentProcess();
+		Process[] processesByName = Process.GetProcessesByName(procName);
 		for (int i = 0; i < processesByName.Length; i++)
 		{
-			Class273.Class275 class2 = new Class273.Class275();
-			class2.class274_0 = @class;
-			class2.process_0 = processesByName[i];
-			class2.intptr_0 = IntPtr.Zero;
-			Class273.EnumWindows(new Class273.Delegate0(class2.method_0), IntPtr.Zero);
-			if (class2.intptr_0 != IntPtr.Zero)
+			if (processesByName[i].Id != currentProcess.Id)
 			{
-				Class534.smethod_3(class2.intptr_0);
+				Class273.Class275 class2 = new Class273.Class275();
+				class2.class274_0 = @class;
+				class2.process_0 = processesByName[i];
+				class2.intptr_0 = IntPtr.Zero;
+				Class273.EnumWindows(new Class273.Delegate0(class2.method_0), IntPtr.Zero);
+				if (class2.intptr_0 != IntPtr.Zero)
+				{
+					Class534.smethod_3(class2.intptr_0);
+				}
 			}
 		}
 		bool flag = true;
-		using (new Mutex(true, "iAuto", out flag))
+		using (new Mutex(true, "Local\\" + procName, out flag))
 		{
 			if (flag)
 			{

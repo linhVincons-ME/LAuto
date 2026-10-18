@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -35914,7 +35914,7 @@ internal class Class106
 	{
 		if (this.Class502_0.Int32_5 == 1)
 		{
-			this.method_375("local n1,n2,n3,n4,n5,n6,n7,n8,n9,f10,n11,n12,n13,n14,n15,n16,f17,n18,n19,n20,n21,n22,n23,n24,n25,n26,n27,n28,n29,n30,n31,n32,n33,n34,n35,n36,n37 = SystemSetup:GameGetData();\r\n\r\nSystemSetup:SaveGameSetup ( n1,n2,n3,n4,n5,n6,n7,n8,n9,tonumber(f10),n11,n12,n13,n14,n15,1,f17, n18,n19,n20,n21,n22,n23,n24,n25,n26,n27,n28,n29,n30,n31,n32,n33,n34,n35,n36,n37 );", false);
+			this.method_375("local _u = unpack or table.unpack; local t = {SystemSetup:GameGetData()}; if t and #t >= 16 then if t[10] then t[10] = tonumber(t[10]) or t[10]; end; t[16] = 1; SystemSetup:SaveGameSetup(_u(t)); elseif t and #t > 0 then SystemSetup:SaveGameSetup(_u(t)); end", false);
 		}
 	}
 

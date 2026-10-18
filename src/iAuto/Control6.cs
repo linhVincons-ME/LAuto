@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.CompilerServices;
@@ -14,7 +14,7 @@ internal class Control6 : TabControl
 	// Token: 0x06001FF6 RID: 8182 RVA: 0x000156FB File Offset: 0x000138FB
 	public Control6()
 	{
-		base.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+		base.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.ResizeRedraw, true);
 		this.TabAlignment_0 = TabAlignment.Bottom;
 		this.Boolean_0 = true;
 		this.class392_0 = new Control6.Class392(this);
@@ -42,8 +42,8 @@ internal class Control6 : TabControl
 	// Token: 0x06001FF9 RID: 8185 RVA: 0x000EA9B8 File Offset: 0x000E8BB8
 	private void method_0()
 	{
-		this.bool_0 = Application.RenderWithVisualStyles && TabRenderer.IsSupported;
-		base.SetStyle(ControlStyles.UserPaint | ControlStyles.Opaque, this.bool_0);
+		this.bool_0 = true;
+		base.SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw, true);
 		base.UpdateStyles();
 		if (this.bool_0)
 		{
@@ -103,6 +103,9 @@ internal class Control6 : TabControl
 		{
 			return;
 		}
+		graphics_0.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+		graphics_0.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+
 		int selectedIndex = base.SelectedIndex;
 		Rectangle rectangle = ((selectedIndex != -1) ? base.GetTabRect(selectedIndex) : Rectangle.Empty);
 		Rectangle clientRectangle = base.ClientRectangle;
@@ -120,17 +123,30 @@ internal class Control6 : TabControl
 			clientRectangle.Y += num;
 			clientRectangle.Height -= num;
 		}
-		if (clientRectangle.IntersectsWith(rectangle_0))
+
+		// Dark Cyber Tab background
+		using (SolidBrush bStrip = new SolidBrush(Color.FromArgb(15, 23, 42)))
 		{
-			TabRenderer.DrawTabPage(graphics_0, clientRectangle);
+			graphics_0.FillRectangle(bStrip, base.ClientRectangle);
 		}
+
+		// Dark Cyber TabPage content area
+		if (clientRectangle.IntersectsWith(rectangle_0) && clientRectangle.Width > 0 && clientRectangle.Height > 0)
+		{
+			using (SolidBrush bPage = new SolidBrush(Color.FromArgb(18, 24, 36)))
+			using (Pen pBorder = new Pen(Color.FromArgb(42, 54, 79)))
+			{
+				graphics_0.FillRectangle(bPage, clientRectangle);
+				graphics_0.DrawRectangle(pBorder, clientRectangle.X, clientRectangle.Y, Math.Max(0, clientRectangle.Width - 1), Math.Max(0, clientRectangle.Height - 1));
+			}
+		}
+
 		int tabCount = base.TabCount;
 		if (tabCount == 0)
 		{
 			return;
 		}
 		this.int_0 = this.method_4();
-		VisualStyleRenderer visualStyleRenderer = new VisualStyleRenderer(VisualStyleElement.Tab.TabItem.Normal);
 		for (int i = 0; i < tabCount; i++)
 		{
 			if (i != selectedIndex)
@@ -138,66 +154,90 @@ internal class Control6 : TabControl
 				Rectangle tabRect = base.GetTabRect(i);
 				if (tabRect.Right >= 3 && tabRect.IntersectsWith(rectangle_0))
 				{
-					Control6.Enum14 @enum = ((i == this.int_0) ? Control6.Enum14.Hot : Control6.Enum14.Normal);
-					visualStyleRenderer.SetParameters(visualStyleRenderer.Class, visualStyleRenderer.Part, (int)@enum);
-					this.method_2(graphics_0, i, tabRect, visualStyleRenderer);
+					bool isHot = (i == this.int_0);
+					this.DrawCyberTab(graphics_0, i, tabRect, false, isHot);
 				}
 			}
 		}
 		rectangle.Inflate(2, 2);
 		if (selectedIndex != -1 && rectangle.IntersectsWith(rectangle_0))
 		{
-			visualStyleRenderer.SetParameters(visualStyleRenderer.Class, visualStyleRenderer.Part, 3);
-			this.method_2(graphics_0, selectedIndex, rectangle, visualStyleRenderer);
+			this.DrawCyberTab(graphics_0, selectedIndex, rectangle, true, false);
 		}
 	}
 
-	// Token: 0x06001FFD RID: 8189 RVA: 0x000EACE8 File Offset: 0x000E8EE8
-	private void method_2(Graphics graphics_0, int int_1, Rectangle rectangle_0, VisualStyleRenderer visualStyleRenderer_0)
+	private void DrawCyberTab(Graphics g, int tabIndex, Rectangle rect, bool isSelected, bool isHot)
 	{
-		if (this.class392_0.Int32_0 > 0 && rectangle_0.X >= this.class392_0.Int32_0)
+		if (tabIndex < 0 || tabIndex >= base.TabPages.Count)
 		{
 			return;
 		}
-		bool flag = visualStyleRenderer_0.State == 3;
-		using (Control6.Class393 @class = new Control6.Class393(graphics_0, rectangle_0.Width, rectangle_0.Height))
+		if (this.class392_0.Int32_0 > 0 && rect.X >= this.class392_0.Int32_0)
 		{
-			Rectangle rectangle = new Rectangle(0, 0, rectangle_0.Width, rectangle_0.Height);
-			visualStyleRenderer_0.DrawBackground(@class.Graphics_0, rectangle);
-			if (flag && rectangle_0.X == 0)
-			{
-				int num = @class.Int32_1 - 1;
-				@class.method_2(0, num, @class.method_1(0, num - 1));
-			}
-			if (this.TabAlignment_0 == TabAlignment.Bottom)
-			{
-				@class.method_0();
-			}
-			TabPage tabPage = base.TabPages[int_1];
-			Image image = this.method_3(tabPage.ImageIndex, tabPage.ImageKey);
-			if (image != null)
-			{
-				Point point = new Point(flag ? 8 : 6, 2);
-				int num2 = point.X + image.Width;
-				if (this.TabAlignment_0 == TabAlignment.Bottom)
-				{
-					point.Y = rectangle.Bottom - image.Height - (flag ? 4 : 2);
-				}
-				if (this.RightToLeftLayout)
-				{
-					point.X = rectangle.Right - num2;
-				}
-				@class.Graphics_0.DrawImageUnscaled(image, point);
-				rectangle.X += num2;
-				rectangle.Width -= num2;
-			}
-			TextRenderer.DrawText(@class.Graphics_0, tabPage.Text, this.Font, rectangle, visualStyleRenderer_0.GetColor(ColorProperty.TextColor), TextFormatFlags.HorizontalCenter | TextFormatFlags.SingleLine | TextFormatFlags.VerticalCenter);
-			if (this.class392_0.Int32_0 > 0 && this.class392_0.Int32_0 >= rectangle_0.X && this.class392_0.Int32_0 < rectangle_0.Right)
-			{
-				rectangle_0.Width -= rectangle_0.Right - this.class392_0.Int32_0;
-			}
-			@class.method_3(graphics_0, rectangle_0);
+			return;
 		}
+		TabPage tabPage = base.TabPages[tabIndex];
+
+		Color bgColor = isSelected 
+			? Color.FromArgb(30, 41, 59) 
+			: (isHot ? Color.FromArgb(24, 34, 49) : Color.FromArgb(15, 23, 42));
+		Color textColor = isSelected 
+			? Color.FromArgb(255, 255, 255) 
+			: (isHot ? Color.FromArgb(241, 245, 249) : Color.FromArgb(148, 163, 184));
+		Color accentCyan = Color.FromArgb(14, 165, 233);
+		Color borderColor = isSelected ? Color.FromArgb(56, 189, 248) : Color.FromArgb(42, 54, 79);
+
+		using (SolidBrush bBg = new SolidBrush(bgColor))
+		using (Pen pBorder = new Pen(borderColor))
+		{
+			g.FillRectangle(bBg, rect);
+			g.DrawRectangle(pBorder, rect.X, rect.Y, Math.Max(0, rect.Width - 1), Math.Max(0, rect.Height - 1));
+
+			if (isSelected)
+			{
+				using (SolidBrush bAccent = new SolidBrush(accentCyan))
+				{
+					if (this.TabAlignment_0 == TabAlignment.Bottom)
+					{
+						g.FillRectangle(bAccent, rect.X, rect.Bottom - 3, rect.Width, 3);
+					}
+					else
+					{
+						g.FillRectangle(bAccent, rect.X, rect.Y, rect.Width, 3);
+					}
+				}
+			}
+		}
+
+		Rectangle textRect = rect;
+		Image image = this.method_3(tabPage.ImageIndex, tabPage.ImageKey);
+		if (image != null)
+		{
+			int imgY = rect.Y + (rect.Height - image.Height) / 2;
+			g.DrawImage(image, rect.X + (isSelected ? 6 : 4), imgY, image.Width, image.Height);
+			textRect.X += image.Width + 6;
+			textRect.Width -= (image.Width + 6);
+		}
+
+		using (Font tabFont = new Font(this.Font.FontFamily, isSelected ? 9f : 8.5f, isSelected ? FontStyle.Bold : FontStyle.Regular))
+		using (Brush bText = new SolidBrush(textColor))
+		{
+			StringFormat sf = new StringFormat
+			{
+				Alignment = StringAlignment.Center,
+				LineAlignment = StringAlignment.Center,
+				Trimming = StringTrimming.EllipsisCharacter,
+				FormatFlags = StringFormatFlags.NoWrap
+			};
+			g.DrawString(tabPage.Text, tabFont, bText, textRect, sf);
+		}
+	}
+
+	private void method_2(Graphics graphics_0, int int_1, Rectangle rectangle_0, VisualStyleRenderer visualStyleRenderer_0)
+	{
+		bool isSelected = (visualStyleRenderer_0 != null && visualStyleRenderer_0.State == 3);
+		bool isHot = (visualStyleRenderer_0 != null && visualStyleRenderer_0.State == 2);
+		this.DrawCyberTab(graphics_0, int_1, rectangle_0, isSelected, isHot);
 	}
 
 	// Token: 0x06001FFE RID: 8190 RVA: 0x00015787 File Offset: 0x00013987
