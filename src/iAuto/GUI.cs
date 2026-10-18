@@ -6586,6 +6586,10 @@ internal partial class GUI : Form
 				this.String_2 = "LAuto";
 			}
 		}
+		if (string.IsNullOrEmpty(this.String_3))
+		{
+			this.String_3 = Class106.Class210_0["Settings", "Pass"];
+		}
 		this.tabMain.Visible = true;
 		this.menuMain.Visible = true;
 		this.tabMain.SelectedIndex = 0;
